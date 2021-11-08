@@ -1,0 +1,11 @@
+Objetivos 🎯
+Se propone analizar, diseñar y construir una aplicación software que permita 
+
+Autores
+
+-Paola Andrea Avella Carrero
+
+
+Descripción desarrolladores 📑:
+
+- Paola Andrea Avella: Ingeniera de sistemas con experiencia en analisis de requerimientos, mis intereses se enfocan hacia el desarrollo en Java.
