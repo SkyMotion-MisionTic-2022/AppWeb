@@ -12,3 +12,4 @@ Descripción desarrolladores 📑:
 
 - Paola Andrea Avella: Ingeniera de sistemas con experiencia en analisis de requerimientos, mis intereses se enfocan hacia el desarrollo en Java.
 - Freddy Andrés Camargo Ocasión: soy politólogo y me interesa el desarrollo de software para temas de analisis de datos y para crear un e-commerce.
+- Mara Selena Mesias Bastidas: Estudiante de biología
