@@ -6,6 +6,7 @@ Autores
 -Paola Andrea Avella Carrero
 -Freddy Andrés Camargo Ocasión
 -Mara Selena Mesias Bastidas
+-Juan David Vaquiro Díaz 
 
 
 Descripción desarrolladores 📑:
@@ -13,3 +14,4 @@ Descripción desarrolladores 📑:
 - Paola Andrea Avella: Ingeniera de sistemas con experiencia en analisis de requerimientos, mis intereses se enfocan hacia el desarrollo en Java.
 - Freddy Andrés Camargo Ocasión: soy politólogo y me interesa el desarrollo de software para temas de analisis de datos y para crear un e-commerce.
 - Mara Selena Mesias Bastidas: Estudiante de biología
+- Juan David Vaquiro Díaz: Técnico profesional en soluciones web, me gusta el mundo geek y los videojuegos, desarrollar las habilidades de programador y dominar el idioma ingles.
