@@ -5,9 +5,10 @@ const SidebarLinks = () => {
   return (
     <ul className='mt-12'>
       <SidebarRoute to='' title='Inicio' icon='fas fa-home' />
-      <SidebarRoute to='/page2' title='Pagina2' icon='fas fa-smile-wink' />
-      <SidebarRoute to='/category1' title='Catego 1' icon='fab fa-amazon' />
-      <SidebarRoute to='/category1/page1' title='Test' icon='fas fa-car' />
+      <SidebarRoute to='/usuarios' title='Gestión de Usuarios' icon='fas fa-user-circle' />
+      <SidebarRoute to='/proyectos' title='Gestión de Proyectos' icon='fas fa-clipboard-list' />
+      <SidebarRoute to='/inscripciones' title='Gestión de Inscripciones' icon='fas fa-user-check' />
+      <SidebarRoute to='/avances' title='Gestión de Avances' icon='fas fa-rocket' />
     </ul>
   );
 };
@@ -15,8 +16,11 @@ const SidebarLinks = () => {
 const Logo = () => {
   return (
     <div className='py-3 w-full flex flex-col items-center justify-center'>
-      <img src='logo.png' alt='Logo' className='h-16' />
-      <span className='my-2 text-xl font-bold text-center'>Título de Mi Aplicación</span>
+      <img src='logo_cc.png' alt='Logo' className='h-16' />
+      <span className='my-2 text-m font-bold text-center'>
+        <span>Skymotion</span><br />
+        <span>Project Management System</span>
+        </span>
     </div>
   );
 };
