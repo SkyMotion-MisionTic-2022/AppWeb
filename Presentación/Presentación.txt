@@ -1,5 +1,5 @@
 Objetivos 🎯
-Se propone analizar, diseñar y construir una aplicación software que permita 
+Se propone analizar, diseñar y construir una aplicación web que permita la gestión de proyectos de investigación
 
 Autores
 
