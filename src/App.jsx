@@ -7,6 +7,7 @@ import Usuarios from 'pages/Usuarios';
 import Proyectos from 'pages/Proyectos';
 import Inscripciones from 'pages/Inscripciones';
 import Avances from 'pages/Avances';
+import Perfil from 'pages/Perfil';
 import 'styles/globals.css';
 import 'styles/tabla.css';
 import { ApolloProvider, ApolloClient, InMemoryCache, createHttpLink } from '@apollo/client';
@@ -34,6 +35,7 @@ const client = new ApolloClient({
             <Routes>
               <Route path='/' element={<PrivateLayout />}>
                 <Route path='' element={<Index />} />
+                <Route path='perfil' element={<Perfil />} />
                 <Route path='usuarios' element={<Usuarios />} />
                 <Route path='proyectos' element={<Proyectos />} />
                 <Route path='inscripciones' element={<Inscripciones />} />
