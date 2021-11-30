@@ -8,6 +8,7 @@ import Proyectos from 'pages/Proyectos';
 import Inscripciones from 'pages/Inscripciones';
 import Avances from 'pages/Avances';
 import 'styles/globals.css';
+import 'styles/tabla.css';
 import { ApolloProvider, ApolloClient, InMemoryCache, createHttpLink } from '@apollo/client';
 
 // import PrivateRoute from 'components/PrivateRoute';
@@ -16,11 +17,12 @@ function App() {
   const [userData, setUserData] = useState({});
 
 const htppLink = createHttpLink({
-  uri: "https://back-skymotion2.herokuapp.com/graphql"
+ // uri: "https://back-skymotion2.herokuapp.com/graphql"
+ uri: "http://localhost:4000/graphql"
 })
 
 const client = new ApolloClient({
-  uri: htppLink,
+  uri: "http://localhost:4000/graphql",
   cache: new InMemoryCache()
 });
 
