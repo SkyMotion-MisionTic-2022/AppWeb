@@ -2,7 +2,7 @@ import React from 'react'
 
 const avances = () => {
     return (
-        <div>
+        <div className='place-items-center'>
             Página de avances
         </div>
     )
