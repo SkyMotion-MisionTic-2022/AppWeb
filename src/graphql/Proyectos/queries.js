@@ -7,7 +7,8 @@ query Proyectos {
       nombre,
       fase,
       fechaInicio,
-      fechaFin
+      fechaFin,
+      estado
     }
   }
 `;
