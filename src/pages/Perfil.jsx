@@ -17,12 +17,14 @@ const perfil = () => {
                         <th>Acciones</th>
                     </tr>
                     <tr>
-                        <td>Nombre</td>
-                        <td>Identificación</td>
-                        <td>Correo</td>
-                        <td>Contraseña</td>
-                        <td>Rol</td>
-                        <td>Acciones</td>
+                        <td>Juliana Vanegas</td>
+                        <td>30567843</td>
+                        <td>jvanegas@gmail.com</td>
+                        <td>password</td>
+                        <td>Estudiante</td>
+                        <td>
+                            <i class="far fa-edit"></i>
+                        </td>
                     </tr>
                 </table>
             </div>
