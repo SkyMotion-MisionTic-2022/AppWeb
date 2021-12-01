@@ -9,3 +9,10 @@
 .sidebar-route {
   @apply rounded-md flex w-full justify-between cursor-pointer items-center m-3 p-3;
 }
+
+.fa-app-store:before {
+  content: "\f36f";
+  color: white;
+  font-size: 40px;
+  margin-left: 15px;
+}

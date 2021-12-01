@@ -1,14 +1,17 @@
 import React, { useState } from 'react';
 import PrivateLayout from 'layouts/PrivateLayout';
+import PublicLayout from 'layouts/PublicLayout';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { UserContext } from 'context/userContext';
 import Index from 'pages/Index';
 import Usuarios from 'pages/Usuarios';
 import Proyectos from 'pages/Proyectos';
 import Inscripciones from 'pages/Inscripciones';
+import Bienvenidos from 'pages/Bienvenidos'
 import Avances from 'pages/Avances';
 import 'styles/globals.css';
 import 'styles/tabla.css';
+
 import { ApolloProvider, ApolloClient, InMemoryCache, createHttpLink } from '@apollo/client';
 
 // import PrivateRoute from 'components/PrivateRoute';
@@ -38,6 +41,9 @@ const client = new ApolloClient({
                 <Route path='proyectos' element={<Proyectos />} />
                 <Route path='inscripciones' element={<Inscripciones />} />
                 <Route path='avances' element={<Avances />} />
+              </Route>
+              <Route path='/' element={<PublicLayout />}>
+                <Route path='bienvenidos' element={<Bienvenidos />} />
               </Route>
             </Routes>
           </BrowserRouter>
