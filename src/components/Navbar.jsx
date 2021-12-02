@@ -8,7 +8,7 @@ const Navbar = () => {
       <ul className="flex w-full justify-between my-3">
         <li><i className="fab fa-app-store p-1"></i></li>
         <li className="px-3 ">
-            <button className="rounded-full border-2 border-blue-100 hover:border-blue-300  p-1">Iniciar Sesión</button>
+            <button className="bg-blue-100 rounded-full border-2 border-blue-100 hover:border-blue-300  p-2">Iniciar Sesión</button>
         </li>
       </ul>
     </nav>
