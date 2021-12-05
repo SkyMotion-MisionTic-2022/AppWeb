@@ -9,10 +9,13 @@ import Proyectos from 'pages/Proyectos';
 import Inscripciones from 'pages/Inscripciones';
 import Bienvenidos from 'pages/Bienvenidos'
 import Avances from 'pages/Avances';
+import Perfil from 'pages/Perfil';
+import Login from 'pages/autenticacion/login';
 import 'styles/globals.css';
 import 'styles/tabla.css';
 
 import { ApolloProvider, ApolloClient, InMemoryCache, createHttpLink } from '@apollo/client';
+import NuevoProyecto from 'pages/NuevoProyecto';
 
 // import PrivateRoute from 'components/PrivateRoute';
 
@@ -35,10 +38,15 @@ const client = new ApolloClient({
       <UserContext.Provider value={{ userData, setUserData }}>
         <BrowserRouter>
             <Routes>
+              <Route path='/autenticacion' element={<LayoutAutenticacion />}>
+                <Route path='login' element={<Login />} />
+              </Route>
               <Route path='/' element={<PrivateLayout />}>
                 <Route path='' element={<Index />} />
+                <Route path='perfil' element={<Perfil />} />
                 <Route path='usuarios' element={<Usuarios />} />
                 <Route path='proyectos' element={<Proyectos />} />
+                <Route path='crearproyecto' element={<NuevoProyecto />} />
                 <Route path='inscripciones' element={<Inscripciones />} />
                 <Route path='avances' element={<Avances />} />
               </Route>

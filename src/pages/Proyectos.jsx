@@ -1,6 +1,8 @@
 import { GET_PROYECTOS } from 'graphql/Proyectos/queries';
 import React, { useEffect } from 'react';
 import { useQuery } from '@apollo/client';
+import Boton from '../components/Boton';
+
 
 
 
@@ -12,20 +14,25 @@ const Proyectos = () => {
         console.log(data);
     }, [data]);
 
+   
+
 
     return (
         <div>
             <h4 className='text-3xl font-extrabold text-gray-900 p-8 ml-64'>
                 Gestion de proyectos
             </h4>
-            <table className='tabla' >
+            <Boton titulo='Crear Proyecto'></Boton>
+
+            <table className='tabla'>
                 <thead>
                     <tr>
                         <th>Nombre</th>
+                        <th>Estado</th>
                         <th>Fase</th>
                         <th>Fecha inicio</th>
                         <th>Fecha fin</th>
-                    
+
                     </tr>
                 </thead>
                 <tbody>
@@ -34,15 +41,19 @@ const Proyectos = () => {
                             return (
                                 <tr key={p._id}>
                                     <td>{p.nombre}</td>
+                                    <td>{p.estado}</td>
                                     <td>{p.fase}</td>
                                     <td>{p.fechaInicio}</td>
                                     <td>{p.fechaFin}</td>
-                                
+
                                 </tr>
                             );
                         })}
                 </tbody>
+              
             </table>
+
+
 
         </div>
     )

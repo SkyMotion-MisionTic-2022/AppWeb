@@ -4,12 +4,14 @@ import { NavLink } from 'react-router-dom';
 const SidebarLinks = () => {
   return (
     <ul className='mt-12'>
-      <SidebarRoute to=''  icon='fas fa-home' />
-      <SidebarRoute to='/usuarios' label="Inicio"  icon='fas fa-user-circle' />
-      <SidebarRoute to='/proyectos'  icon='fas fa-clipboard-list' />
-      <SidebarRoute to='/inscripciones' icon='fas fa-user-check' />
-      <SidebarRoute to='/avances'  icon='fas fa-rocket' />
-      </ul>
+      <SidebarRoute to='' title='Inicio' icon='fas fa-home' />
+      <SidebarRoute to='/perfil' title='Perfil' icon='fas fa-user-circle' />
+      <SidebarRoute to='/usuarios' title='Gestión de Usuarios' icon='fas fa-users' />
+      <SidebarRoute to='/proyectos' title='Gestión de Proyectos' icon='fas fa-clipboard-list' />
+      <SidebarRoute to='/inscripciones' title='Gestión de Inscripciones' icon='fas fa-user-check' />
+      <SidebarRoute to='/avances' title='Gestión de Avances' icon='fas fa-rocket' />
+      <SidebarRoute to='' title='Logout' icon='fas fa-sign-out-alt' />
+    </ul>
   );
 };  
 
