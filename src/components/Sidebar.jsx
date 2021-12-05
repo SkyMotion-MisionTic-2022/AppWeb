@@ -13,19 +13,7 @@ const SidebarLinks = () => {
       <SidebarRoute to='' title='Logout' icon='fas fa-sign-out-alt' />
     </ul>
   );
-};
-
-const Logo = () => {
-  return (
-    <div className='py-3 w-full flex flex-col items-center justify-center'>
-      <img src='logo_cc.png' alt='Logo' className='h-16' />
-      <span className='my-2 text-m font-bold text-center'>
-        <span>Skymotion</span><br />
-        <span>Project Management System</span>
-        </span>
-    </div>
-  );
-};
+};  
 
 const Sidebar = () => {
   const [open, setOpen] = useState(true);
@@ -33,9 +21,8 @@ const Sidebar = () => {
     <div className='flex flex-col md:flex-row flex-no-wrap md:h-full'>
       {/* Sidebar starts */}
 
-      <div className='sidebar hidden md:flex'>
-        <div className='px-8'>
-          <Logo />
+      <div className='sidebar hidden md:flex w-16'  >
+        <div className='pr-4'>
           <SidebarLinks />
         </div>
       </div>
@@ -57,7 +44,6 @@ const ResponsiveSidebar = () => {
         id='mobile-nav'
       >
         <div className='px-8'>
-          <Logo />
           <SidebarLinks />
         </div>
       </div>
@@ -72,8 +58,8 @@ const SidebarRoute = ({ to, title, icon }) => {
         to={to}
         className={({ isActive }) =>
           isActive
-            ? 'sidebar-route text-white bg-indigo-700'
-            : 'sidebar-route text-gray-900 hover:text-white hover:bg-indigo-400'
+            ? 'sidebar-route bg-purple-300'
+            : 'sidebar-route text-gray-900   hover:bg-purple-300'
         }
       >
         <div className='flex items-center'>
