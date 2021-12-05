@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import PrivateLayout from 'layouts/PrivateLayout';
 import PublicLayout from 'layouts/PublicLayout';
+import LayoutAutenticacion from 'layouts/LayoutAutenticacion'
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { UserContext } from 'context/userContext';
 import Index from 'pages/Index';
@@ -22,10 +23,10 @@ import NuevoProyecto from 'pages/NuevoProyecto';
 function App() {
   const [userData, setUserData] = useState({});
 
-const htppLink = createHttpLink({
- // uri: "https://back-skymotion2.herokuapp.com/graphql"
- uri: "http://localhost:4000/graphql"
-})
+// const htppLink = createHttpLink({
+//  // uri: "https://back-skymotion2.herokuapp.com/graphql"
+//  uri: "http://localhost:4000/graphql"
+// })
 
 const client = new ApolloClient({
   uri: "http://localhost:4000/graphql",
