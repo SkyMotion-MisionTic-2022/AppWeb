@@ -10,6 +10,7 @@ const SidebarLinks = () => {
       <SidebarRoute to='/proyectos' title='Gestión de Proyectos' icon='fas fa-clipboard-list' />
       <SidebarRoute to='/inscripciones' title='Gestión de Inscripciones' icon='fas fa-user-check' />
       <SidebarRoute to='/avances' title='Gestión de Avances' icon='fas fa-rocket' />
+      <SidebarRoute to='' title='Logout' icon='fas fa-sign-out-alt' />
     </ul>
   );
 };
