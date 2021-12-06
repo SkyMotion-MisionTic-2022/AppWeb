@@ -2,6 +2,7 @@ import { GET_PROYECTOS } from 'graphql/Proyectos/queries';
 import React, { useEffect } from 'react';
 import { useQuery } from '@apollo/client';
 import Boton from '../components/Boton';
+import { Link } from 'react-router-dom';
 
 
 
@@ -19,10 +20,10 @@ const Proyectos = () => {
 
     return (
         <div>
-            <h4 className='text-3xl font-extrabold text-gray-900 p-8 ml-64'>
+            <h4 className='flex justify-center p-4 text text-2xl m-14 text-blue-400'>
                 Gestion de proyectos
             </h4>
-            <Boton titulo='Crear Proyecto'></Boton>
+          
 
             <table className='tabla'>
                 <thead>
@@ -52,6 +53,13 @@ const Proyectos = () => {
                 </tbody>
               
             </table>
+
+            <div className='flex flex-row justify-around'>
+            <Link to="/crearproyecto">
+            <Boton titulo='Crear Proyecto'> 
+            </Boton>
+            </Link>
+            </div>
 
 
 
