@@ -20,14 +20,10 @@ const Proyectos = () => {
 
     return (
         <div>
-            <h4 className='text-3xl font-extrabold text-gray-900 p-8 ml-64'>
+            <h4 className='flex justify-center p-4 text text-2xl m-14 text-blue-400'>
                 Gestion de proyectos
             </h4>
-            <Link to="/crearproyecto">
-            <Boton titulo='Crear Proyecto'>
-              
-            </Boton>
-            </Link>
+          
 
             <table className='tabla'>
                 <thead>
@@ -57,6 +53,13 @@ const Proyectos = () => {
                 </tbody>
               
             </table>
+
+            <div className='flex flex-row justify-around'>
+            <Link to="/crearproyecto">
+            <Boton titulo='Crear Proyecto'> 
+            </Boton>
+            </Link>
+            </div>
 
 
 

@@ -53,7 +53,7 @@ const NuevoProyecto = () => {
 
     return (
         <div>
-            <h4 className='text-3xl font-extrabold text-gray-900 p-8 ml-64'>
+            <h4 className='flex justify-center p-4 text text-2xl m-14 text-blue-400'>
                 Crear proyectos
             </h4>
             <Link to="/proyectos">
