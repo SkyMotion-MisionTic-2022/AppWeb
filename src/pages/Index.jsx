@@ -2,8 +2,12 @@ import React from 'react';
 
 const Index = () => {
   return (
-    <div>
-      <div className='bg-green-300'>Index page</div>
+    <div className='place-content-center'>
+            <div>
+            <h2 className='flex justify-center p-4 text text-2xl m-14 text-blue-400'>
+              Bienvenido al gestior de proyectos Inicar navegando con menu lateral 
+            </h2>
+            </div>
     </div>
   );
 };
