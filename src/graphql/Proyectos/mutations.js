@@ -10,7 +10,7 @@ mutation Mutation($nombre: String!, $presupuesto: Float!, $fechaInicio: Date!, $
 const ELIMINAR_PROYECTO = gql`
 mutation Mutation($id: String) {
   eliminarProyecto(_id: $id) {
-     nombre
+    _id
   }
 }
 `;

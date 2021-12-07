@@ -16,18 +16,18 @@ const Proyectos = () => {
     useEffect(() => {
         console.log(data);
     }, [data]);
- 
-    const Eliminar = (iden) => {
 
-        console.log(iden);
+   
+ 
+    const Eliminar = (id) => {
+
+        console.log(id);
     
         eliminarProyecto({
-          variables:  {_id: iden},
+          variables:  {_id: id },
+          
         });
-    
-        refetch();
-    
-    
+        refetch()
       };
 
 
@@ -92,4 +92,4 @@ const Proyectos = () => {
     )
 }
 
-export default Proyectos
+export default Proyectos;
