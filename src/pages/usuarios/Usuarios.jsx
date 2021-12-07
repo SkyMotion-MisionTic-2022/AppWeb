@@ -2,11 +2,11 @@ import { GET_USUARIOS } from 'graphql/Usuarios/queries';
 import React, { useEffect,useState } from 'react';
 import { useQuery, useMutation } from '@apollo/client';
 import { ELIMINAR_USUARIO } from 'graphql/Usuarios/mutations';
-import Boton from '../components/Boton';
+import Boton from '../../components/Boton';
 import { Link } from 'react-router-dom';
 
 const Usuarios = () => {
- // const [_id, setId] = useState();
+
   var { data,refetch } = useQuery(GET_USUARIOS) ;
   const [eliminarUsuario, { data: dataMutation, loading: loadingMutation, error: errorMutation }] =
   useMutation(ELIMINAR_USUARIO);
@@ -77,6 +77,13 @@ const Usuarios = () => {
         </tbody>
 
       </table>
+
+      <div className='flex flex-row justify-around'>
+            <Link to="/crearusuario">
+            <Boton titulo='Crear Usuario'> 
+            </Boton>
+            </Link>
+            </div>
 
     </div>
   );

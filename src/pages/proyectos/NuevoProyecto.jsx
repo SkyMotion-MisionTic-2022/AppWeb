@@ -1,7 +1,7 @@
 import React, { useRef, useState } from 'react';
 import { useMutation } from '@apollo/client';
 import { CREAR_PROYECTO } from 'graphql/Proyectos/mutations';
-import Boton from '../components/Boton';
+import Boton from '../../components/Boton';
 import { Link } from 'react-router-dom';
 
 const NuevoProyecto = () => {
@@ -21,7 +21,7 @@ const NuevoProyecto = () => {
         fd.forEach((value, key) => {
             nuevoProyecto[key] = value;
         });
-        
+
         setObjetivos(...nuevoProyecto);
 
         console.log([nuevoProyecto]);
@@ -56,13 +56,10 @@ const NuevoProyecto = () => {
             <h4 className='flex justify-center p-4 text text-2xl m-14 text-blue-400'>
                 Crear proyectos
             </h4>
-            <Link to="/proyectos">
-            <Boton titulo='Ver Proyecto'>
-              
-            </Boton>
-            </Link>
+            
             <form ref={form}
                 onSubmit={submitForm}
+
             >
                 <label htmlFor='nombre'>
                     Nombre
@@ -140,68 +137,77 @@ const NuevoProyecto = () => {
                     </label>
 
                     <label htmlFor='tipo'>
-                     Tipo
-                    <select
-                        className='bg-gray-50 border border-gray-600 p-2 rounded-lg m-2'
-                        name='tipo'
-                        required
-                        defaultValue={0}
-                    >
+                        Tipo
+                        <select
+                            className='bg-gray-50 border border-gray-600 p-2 rounded-lg m-2'
+                            name='tipo'
+                            required
+                            defaultValue={0}
+                        >
 
-                        <option disabled value={0}>
-                            Seleccione una opción
-                        </option>
-                        <option>619adf7960d6c38bb4ce1d22</option>
-                        <option>619ceafc20aed9151fcc0d38</option>
+                            <option disabled value={0}>
+                                Seleccione una opción
+                            </option>
+                            <option>619adf7960d6c38bb4ce1d22</option>
+                            <option>619ceafc20aed9151fcc0d38</option>
 
-                    </select>
-                </label>
+                        </select>
+                    </label>
 
                     <button
                         onClick={submitFormObj}
                         class='bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded'
                     >
-                    
+
 
                         Guardar objetivo
                     </button>
 
                     <table className='tabla'>
-                <thead>
-                    <tr>
-                        <th>Descripcion</th>
-                        <th>Tipo</th>
-                        <th>Accion</th>
-                    </tr>
-                </thead>
-                <tbody>
-                   {objetivos.map((o) => {
-                            return (
-                                <tr>
-                                    <td>{o.descripcion}</td>
-                                    <td>{o.tipo}</td>
+                        <thead>
+                            <tr>
+                                <th>Descripcion</th>
+                                <th>Tipo</th>
+                                <th>Accion</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {objetivos.map((o) => {
+                                return (
+                                    <tr>
+                                        <td>{o.descripcion}</td>
+                                        <td>{o.tipo}</td>
 
-                                </tr>
-                            );
-                        })}
-                    
-                </tbody>
-              
-            </table>
+                                    </tr>
+                                );
+                            })}
+
+                        </tbody>
+
+                    </table>
 
                 </form>
 
-
-                <button
+                <div className='flex flex-row justify-around'>
+                    <Link to="/proyectos">
+                        <Boton titulo='ver proyectos'>
+                        </Boton>
+                    </Link>
+                    <button
                     type='submit'
                     class='bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded'
                 >
                     Guardar proyecto
                 </button>
+                </div>
 
-            </form>
 
-        </div>
+
+
+
+            </form >
+
+        </div >
     )
 }
 

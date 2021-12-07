@@ -1,7 +1,7 @@
 import { GET_PROYECTOS } from 'graphql/Proyectos/queries';
 import React, { useEffect } from 'react';
 import { useQuery } from '@apollo/client';
-import Boton from '../components/Boton';
+import Boton from '../../components/Boton';
 import { Link } from 'react-router-dom';
 
 

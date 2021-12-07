@@ -5,8 +5,8 @@ import LayoutAutenticacion from 'layouts/LayoutAutenticacion'
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { UserContext } from 'context/userContext';
 import Index from 'pages/Index';
-import Usuarios from 'pages/Usuarios';
-import Proyectos from 'pages/Proyectos';
+import Usuarios from 'pages/usuarios/Usuarios';
+import Proyectos from 'pages/proyectos/Proyectos';
 import Inscripciones from 'pages/Inscripciones';
 import Bienvenidos from 'pages/Bienvenidos'
 import Avances from 'pages/Avances';
@@ -16,7 +16,8 @@ import 'styles/globals.css';
 import 'styles/tabla.css';
 
 import { ApolloProvider, ApolloClient, InMemoryCache, createHttpLink } from '@apollo/client';
-import NuevoProyecto from 'pages/NuevoProyecto';
+import NuevoProyecto from 'pages/proyectos/NuevoProyecto';
+import NuevoUsuario from 'pages/usuarios/NuevoUsuario';
 
 // import PrivateRoute from 'components/PrivateRoute';
 
@@ -46,6 +47,7 @@ const client = new ApolloClient({
                 <Route path='' element={<Index />} />
                 <Route path='perfil' element={<Perfil />} />
                 <Route path='usuarios' element={<Usuarios />} />
+                <Route path='crearusuario' element={<NuevoUsuario />} />
                 <Route path='proyectos' element={<Proyectos />} />
                 <Route path='crearproyecto' element={<NuevoProyecto />} />
                 <Route path='inscripciones' element={<Inscripciones />} />
