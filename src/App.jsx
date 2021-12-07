@@ -14,33 +14,61 @@ import Perfil from 'pages/Perfil';
 import Login from 'pages/autenticacion/login';
 import 'styles/globals.css';
 import 'styles/tabla.css';
-
 import { ApolloProvider, ApolloClient, InMemoryCache, createHttpLink } from '@apollo/client';
 import NuevoProyecto from 'pages/proyectos/NuevoProyecto';
 import NuevoUsuario from 'pages/usuarios/NuevoUsuario';
+import { AuthContext } from 'context/authContext';
+import { setContext } from '@apollo/client/link/context';
 
 // import PrivateRoute from 'components/PrivateRoute';
+const httpLink = createHttpLink({
+  uri: 'http://localhost:4000/graphql',
+});
 
-function App() {
-  const [userData, setUserData] = useState({});
-
-// const htppLink = createHttpLink({
-//  // uri: "https://back-skymotion2.herokuapp.com/graphql"
-//  uri: "http://localhost:4000/graphql"
-// })
+const authLink = setContext((_, { headers }) => {
+  // get the authentication token from local storage if it exists
+  const token = JSON.parse(localStorage.getItem('token'));
+  // return the headers to the context so httpLink can read them
+  return {
+    headers: {
+      ...headers,
+      authorization: token ? `Bearer ${token}` : '',
+    },
+  };
+});
 
 const client = new ApolloClient({
-  uri: "http://localhost:4000/graphql",
-  cache: new InMemoryCache()
+  cache: new InMemoryCache(),
+  link: authLink.concat(httpLink),
 });
 
 
+function App() {
+  const [userData, setUserData] = useState({});
+  const [authToken, setAuthToken] = useState('');
+  const [loadingAuth, setLoadingAuth] = useState(true);
+
+  const setToken = (data) => {
+    setAuthToken(data);
+    console.log('dt token', data);
+    if (data) {
+      localStorage.setItem('token', JSON.stringify(data));
+    } else {
+      localStorage.removeItem('token');
+    }
+    setLoadingAuth(false);
+  };
+
+
+
+
   return (
-    <ApolloProvider client={client}> 
-      <UserContext.Provider value={{ userData, setUserData }}>
-        <BrowserRouter>
+    <ApolloProvider client={client}>
+      <AuthContext.Provider value={{ authToken, setToken, loadingAuth }}>
+        <UserContext.Provider value={{ userData, setUserData }}>
+          <BrowserRouter>
             <Routes>
-              <Route path='/autenticacion' element={<LayoutAutenticacion />}>
+              <Route path='/auth' element={<LayoutAutenticacion />}>
                 <Route path='login' element={<Login />} />
               </Route>
               <Route path='/' element={<PrivateLayout />}>
@@ -53,12 +81,10 @@ const client = new ApolloClient({
                 <Route path='inscripciones' element={<Inscripciones />} />
                 <Route path='avances' element={<Avances />} />
               </Route>
-              <Route path='/' element={<PublicLayout />}>
-                <Route path='bienvenidos' element={<Bienvenidos />} />
-              </Route>
             </Routes>
           </BrowserRouter>
-       </UserContext.Provider>
+        </UserContext.Provider>
+      </AuthContext.Provider>
     </ApolloProvider>
   );
 }
