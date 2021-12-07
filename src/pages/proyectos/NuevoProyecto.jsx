@@ -124,7 +124,10 @@ const NuevoProyecto = () => {
 
                     </select>
                 </label>
+                <div className='flex flex-row justify-around' >
                 <Objetivos />
+
+                </div>
 
                 <div className='flex flex-row justify-around'>
                     <Link to="/proyectos">
@@ -162,7 +165,7 @@ const Objetivos = () => {
     return (
         <CreateObjectiveContext.Provider value={{ removeObjetivo }}>
             <div>
-                <span>Objetivos del Proyecto:</span>
+                <span className='text-blue-400'> Adicionar objetivos del Proyecto:</span>
                 <i
                     className='fas fa-plus rounded-full bg-green-500 hover:bg-green-400 text-white p-2 mx-2 cursor-pointer'
                     onClick={() => {
