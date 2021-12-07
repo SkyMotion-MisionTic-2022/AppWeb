@@ -1,5 +1,5 @@
 import { GET_USUARIOS } from 'graphql/Usuarios/queries';
-import React, { useEffect,useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useQuery, useMutation } from '@apollo/client';
 import { ELIMINAR_USUARIO } from 'graphql/Usuarios/mutations';
 import Boton from '../../components/Boton';
@@ -7,27 +7,27 @@ import { Link } from 'react-router-dom';
 
 const Usuarios = () => {
 
-  var { data,refetch } = useQuery(GET_USUARIOS) ;
+  var { data, refetch } = useQuery(GET_USUARIOS);
   const [eliminarUsuario, { data: dataMutation, loading: loadingMutation, error: errorMutation }] =
-  useMutation(ELIMINAR_USUARIO);
- 
+    useMutation(ELIMINAR_USUARIO);
+
 
 
   useEffect(() => {
-      console.log(data);
+    console.log(data);
   }, [data]);
 
   const Eliminar = (iden) => {
-   
-    //setId(iden);
-   
-    eliminarUsuario({
-      variables: { correo: iden},
-   });
 
-   refetch();
-   
-   
+    //setId(iden);
+
+    eliminarUsuario({
+      variables: { correo: iden },
+    });
+
+    refetch();
+
+
   };
 
   return (
@@ -61,14 +61,14 @@ const Usuarios = () => {
                   <td>{p.rol}</td>
                   <td>{p.estado}</td>
                   <td>
-                  <div className='flex w-full justify-around'>
-                    <i class="far fa-edit"></i>
-                    <i className='fas fa-trash'
-                  
-                    onClick={() => Eliminar(p.correo)
-                    }>
-                    </i>
-                  </div>  
+                    <div className='flex w-full justify-around'>
+                      <i class="far fa-edit"></i>
+                      <i className='fas fa-trash'
+
+                        onClick={() => Eliminar(p.correo)
+                        }>
+                      </i>
+                    </div>
                   </td>
 
                 </tr>
@@ -79,11 +79,11 @@ const Usuarios = () => {
       </table>
 
       <div className='flex flex-row justify-around'>
-            <Link to="/crearusuario">
-            <Boton titulo='Crear Usuario'> 
-            </Boton>
-            </Link>
-            </div>
+        <Link to="/crearusuario">
+          <Boton titulo='Crear Usuario'>
+          </Boton>
+        </Link>
+      </div>
 
     </div>
   );
