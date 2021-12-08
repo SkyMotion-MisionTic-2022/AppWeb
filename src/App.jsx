@@ -17,6 +17,7 @@ import 'styles/tabla.css';
 import { ApolloProvider, ApolloClient, InMemoryCache, createHttpLink } from '@apollo/client';
 import NuevoProyecto from 'pages/proyectos/NuevoProyecto';
 import NuevoUsuario from 'pages/usuarios/NuevoUsuario';
+import EditarUsuario from 'pages/usuarios/EditarUsuario';
 import { AuthContext } from 'context/authContext';
 import { setContext } from '@apollo/client/link/context';
 
@@ -76,6 +77,7 @@ function App() {
                 <Route path='perfil' element={<Perfil />} />
                 <Route path='usuarios' element={<Usuarios />} />
                 <Route path='crearusuario' element={<NuevoUsuario />} />
+                <Route path='/usuarios/editar/:_id' element={<EditarUsuario />} />
                 <Route path='proyectos' element={<Proyectos />} />
                 <Route path='crearproyecto' element={<NuevoProyecto />} />
                 <Route path='inscripciones' element={<Inscripciones />} />
