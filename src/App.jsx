@@ -68,8 +68,9 @@ function App() {
         <UserContext.Provider value={{ userData, setUserData }}>
           <BrowserRouter>
             <Routes>
-              <Route path='/auth' element={<LayoutAutenticacion />}>
+              <Route path='/auth' element={<PublicLayout />}>
                 <Route path='login' element={<Login />} />
+                <Route path='bienvenidos' element={<Bienvenidos />} />
               </Route>
               <Route path='/' element={<PrivateLayout />}>
                 <Route path='' element={<Index />} />

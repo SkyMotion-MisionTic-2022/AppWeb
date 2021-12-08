@@ -40,34 +40,34 @@ const Login = () => {
     <div className='flex flex-col items-center justify-center w-full h-full p-10'>
       <h1 className='text-xl font-bold text-gray-900'>Iniciar sesión</h1>
       <form className='flex flex-col' onSubmit={submitForm} ref={form}>
-      <label htmlFor='correo'>
-                    Correo
-                    <input
-                        name='correo'
-                        className='bg-gray-50 border border-gray-600 p-2 rounded-lg m-2'
-                        type='email'
-                        required
-                    />
-                </label>
+        <label htmlFor='correo'>
+          Correo
+          <input
+            name='correo'
+            className='bg-gray-50 border border-gray-600 p-2 rounded-lg m-2'
+            type='email'
+            required
+          />
+        </label>
 
 
-                <label htmlFor='password'>
-                    Contraseña
-                    <input
-                        name='password'
-                        className='bg-gray-50 border border-gray-600 p-2 rounded-lg m-2'
-                        type='text'
-                        placeholder='contraseña'
-                        required
-                    />
-                </label>
-                <button
-                        type='submit'
-                        class='bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded'
-                    >
-                        Iniciar sesion
-                    </button>
-               
+        <label htmlFor='password'>
+          Contraseña
+          <input
+            name='password'
+            className='bg-gray-50 border border-gray-600 p-2 rounded-lg m-2'
+            type='password'
+            placeholder='contraseña'
+            required
+          />
+        </label>
+        <button
+          type='submit'
+          class='bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded'
+        >
+          Iniciar sesion
+        </button>
+
       </form>
       <span>¿No tienes una cuenta?</span>
       <Link to='/auth/register'>
