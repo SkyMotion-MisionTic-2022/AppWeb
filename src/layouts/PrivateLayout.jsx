@@ -32,9 +32,9 @@ const PrivateLayout = () => {
       //   setLoadingLogin(false);
       // });
       console.log('refresh', token);
-     // validateToken();
+      // validateToken();
     },
-  //  [validateToken]
+    //  [validateToken]
   );
 
   useEffect(() => {
@@ -61,11 +61,11 @@ const PrivateLayout = () => {
   useEffect(() => {
     console.log('tkn', authToken, loadingAuth);
     if (!loadingAuth && !authToken) {
-      navigate('/auth/login');
+      navigate('/auth/bienvenidos');
     }
   }, [loadingAuth, authToken, navigate]);
 
- // if (loadingMutation || loadingAuth) return <div>Loading....</div>;
+  // if (loadingMutation || loadingAuth) return <div>Loading....</div>;
 
   return (
     <div className='flex flex-col md:flex-row flex-no-wrap h-screen'>
