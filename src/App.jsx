@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import PrivateLayout from 'layouts/PrivateLayout';
 import PublicLayout from 'layouts/PublicLayout';
 import LayoutAutenticacion from 'layouts/LayoutAutenticacion'
@@ -10,8 +10,9 @@ import Proyectos from 'pages/proyectos/Proyectos';
 import Inscripciones from 'pages/Inscripciones';
 import Bienvenidos from 'pages/Bienvenidos'
 import Avances from 'pages/Avances';
-import Perfil from 'pages/Perfil';
+import Perfil from 'pages/perfil/Perfil';
 import Login from 'pages/autenticacion/login';
+import jwt_decode from 'jwt-decode';
 import 'styles/globals.css';
 import 'styles/tabla.css';
 import { ApolloProvider, ApolloClient, InMemoryCache, createHttpLink } from '@apollo/client';
@@ -28,9 +29,8 @@ const httpLink = createHttpLink({
 });
 
 const authLink = setContext((_, { headers }) => {
-  // get the authentication token from local storage if it exists
   const token = JSON.parse(localStorage.getItem('token'));
-  // return the headers to the context so httpLink can read them
+
   return {
     headers: {
       ...headers,
@@ -48,25 +48,39 @@ const client = new ApolloClient({
 function App() {
   const [userData, setUserData] = useState({});
   const [authToken, setAuthToken] = useState('');
-  const [loadingAuth, setLoadingAuth] = useState(true);
+  // const [loadingAuth, setLoadingAuth] = useState(true);
 
-  const setToken = (data) => {
-    setAuthToken(data);
-    console.log('dt token', data);
-    if (data) {
-      localStorage.setItem('token', JSON.stringify(data));
+  const setToken = (token) => {
+    console.log('set token', token);
+    setAuthToken(token);
+    if (token) {
+      localStorage.setItem('token', JSON.stringify(token));
     } else {
       localStorage.removeItem('token');
     }
-    setLoadingAuth(false);
+    // setLoadingAuth(false);
   };
 
-
+  useEffect(() => {
+    if (authToken) {
+      const decoded = jwt_decode(authToken);
+      setUserData({
+        _id: decoded._id,
+        nombre: decoded.nombre,
+        apellido: decoded.apellido,
+        identificacion: decoded.identificacion,
+        correo: decoded.correo,
+        password: decoded.password,
+        rol: decoded.rol,
+      });
+    }
+    console.log('datos de usuario:', userData)
+  }, [authToken]);
 
 
   return (
     <ApolloProvider client={client}>
-      <AuthContext.Provider value={{ authToken, setToken, loadingAuth }}>
+      <AuthContext.Provider value={{ authToken, setAuthToken, setToken }}>
         <UserContext.Provider value={{ userData, setUserData }}>
           <BrowserRouter>
             <Routes>

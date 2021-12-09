@@ -1,15 +1,20 @@
-import React from 'react'
+import React, { useEffect } from 'react';
+import { useUser } from 'context/userContext';
 
-const perfil = () => {
+const Perfil = () => {
+
+    const { userData } = useUser();
+    console.log(userData);
     return (
         <div className='place-content-center'>
             <div>
-            <h2 className='flex justify-center p-4 text text-2xl text-blue-400'>Edita tu Perfil</h2>
+                <h2 className='flex justify-center p-4 text text-2xl text-blue-400'>Edita tu Perfil</h2>
             </div>
             <div className='flex flex-row justify-center p-4'>
-                <table className='table-auto bg-gray-200 rounded-md divide-white'>
+                <table className='tabla'>
                     <tr className='bg-white'>
                         <th>Nombre</th>
+                        <th>Apellido</th>
                         <th>Identificación</th>
                         <th>Correo</th>
                         <th>Contraseña</th>
@@ -17,11 +22,12 @@ const perfil = () => {
                         <th>Acciones</th>
                     </tr>
                     <tr>
-                        <td>Juliana Vanegas</td>
-                        <td>30567843</td>
-                        <td>jvanegas@gmail.com</td>
-                        <td>password</td>
-                        <td>Estudiante</td>
+                        <td>{userData.nombre}</td>
+                        <td>{userData.apellido}</td>
+                        <td>{userData.identificacion}</td>
+                        <td>{userData.correo}</td>
+                        <td>{userData.password}</td>
+                        <td>{userData.rol}</td>
                         <td>
                             <i class="far fa-edit"></i>
                         </td>
@@ -32,4 +38,4 @@ const perfil = () => {
     )
 }
 
-export default perfil
+export default Perfil
