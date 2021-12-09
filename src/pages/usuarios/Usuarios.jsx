@@ -17,6 +17,10 @@ const Usuarios = () => {
     console.log(data);
   }, [data]);
 
+  useEffect(() => {
+    refetch();
+  }, []);
+
   const Eliminar = (iden) => {
 
     //setId(iden);
