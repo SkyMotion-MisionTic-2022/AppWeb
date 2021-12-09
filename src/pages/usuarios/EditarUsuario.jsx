@@ -1,15 +1,18 @@
 import React, { useRef, useState, useEffect } from 'react'
 import { useParams, Link } from 'react-router-dom';
 import { GET_USUARIO } from 'graphql/Usuarios/queries';
+import { EDITAR_USUARIO } from 'graphql/Usuarios/mutations';
 import { useQuery, useMutation } from '@apollo/client';
 import Boton from '../../components/Boton';
+import { useNavigate } from 'react-router-dom';
 
 
 const EditarUsuario = () => {
     const { _id } = useParams();
     const form = useRef(null);
     const [userData, setUserData] = useState({});
-
+    let navigate = useNavigate();
+    
     const {
         data: queryData,
         error: queryError,
@@ -17,6 +20,10 @@ const EditarUsuario = () => {
       } = useQuery(GET_USUARIO, {
         variables: { id: _id },
       });
+
+      
+  const [editUser, { data: dataMutation, loading: loadingMutation, error: errorMutation }] =
+  useMutation(EDITAR_USUARIO);
     
       
   useEffect(() => {
@@ -33,10 +40,15 @@ const EditarUsuario = () => {
         e.preventDefault();
         const fd = new FormData(form.current);
 
-        const nuevoProyecto = {};
+        const usuarioEditado = {};
         fd.forEach((value, key) => {
-            nuevoProyecto[key] = value;
+            usuarioEditado[key] = value;
         });
+        await editUser({
+            variables: { id:_id, ...usuarioEditado },
+          });
+      
+          navigate('/usuarios');
        
 
     };  

@@ -14,4 +14,11 @@ mutation Mutation($nombre: String!, $apellido: String!, $identificacion: String!
   }
 }
 `;
-export {CREAR_USUARIO,ELIMINAR_USUARIO}
+const EDITAR_USUARIO = gql`
+mutation Mutation($id: String!, $nombre: String, $apellido: String, $identificacion: String, $correo: String, $rol: Enum_Rol, $estado: Enum_EstadoUsuario) {
+  editarUsuario(_id: $id, nombre: $nombre, apellido: $apellido, identificacion: $identificacion, correo: $correo, rol: $rol, estado: $estado) {
+     nombre
+  }
+}
+`;
+export {CREAR_USUARIO,ELIMINAR_USUARIO,EDITAR_USUARIO}
