@@ -11,24 +11,24 @@ const Proyectos = () => {
     const { data, refetch } = useQuery(GET_PROYECTOS);
 
     const [eliminarProyecto, { data: dataMutation, loading: loadingMutation, error: errorMutation }] =
-    useMutation(ELIMINAR_PROYECTO);
+        useMutation(ELIMINAR_PROYECTO);
 
     useEffect(() => {
         console.log(data);
     }, [data]);
 
-   
- 
+
+
     const Eliminar = (id) => {
 
         console.log(id);
-    
+
         eliminarProyecto({
-          variables:  {_id: id },
-          
+            variables: { _id: id },
+
         });
         refetch()
-      };
+    };
 
 
 
@@ -63,7 +63,10 @@ const Proyectos = () => {
                                     <td>{p.fechaFin}</td>
                                     <td>
                                         <div className='flex w-full justify-around'>
-                                            <i class="far fa-edit"></i>
+
+                                            <Link to={`/proyectos/editar/${p._id}`}>
+                                                <i class="far fa-edit"></i>
+                                            </Link>
                                             <i className='fas fa-trash'
 
                                                 onClick={() => Eliminar(p._id)

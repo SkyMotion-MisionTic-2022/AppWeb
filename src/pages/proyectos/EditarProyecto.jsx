@@ -1,20 +1,35 @@
-import React, { useRef, useState } from 'react';
-import { useMutation } from '@apollo/client';
-import { CREAR_PROYECTO } from 'graphql/Proyectos/mutations';
+import React, { useRef, useState, useEffect } from 'react';
+import { useMutation,useQuery } from '@apollo/client';
+import { GET_PROYECTO } from 'graphql/Proyectos/queries';
 import Boton from '../../components/Boton';
-import { Link } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import { nanoid } from 'nanoid';
 import { CreateObjectiveContext } from 'context/createObjectiveContext';
 import { useCreateObjective } from 'context/createObjectiveContext';
 
+
 const EditarProyecto = () => {
     const form = useRef(null);
-    const [crearProyecto, { data: dataMutation, loading: loadingMutation, error: errorMutation }] =
-        useMutation(CREAR_PROYECTO);
-
-
+    const { _id } = useParams();
+    const [proyecData, setproyecData] = useState({});
+    
+    const {
+        data: queryData,
+        error: queryError,
+        loading: queryLoading,
+      } = useQuery(GET_PROYECTO, {
+        variables: { id: _id },
+      });
+      useEffect(() => {
+   
+        if (queryData) {
+          console.log('dq', queryData);
+         console.log(queryData.Proyecto);
+         setproyecData(queryData.Proyecto);
+        }
+      }, [queryData]);
+   
     const submitForm = async (e) => {
-
         e.preventDefault();
         const fd = new FormData(form.current);
 
@@ -39,6 +54,7 @@ const EditarProyecto = () => {
                         type='text'
                         placeholder='Nombre proyecto'
                         required
+                        defaultValue={proyecData.nombre}
                     />
                 </label>
                 <label htmlFor='presupuesto'>
@@ -49,6 +65,7 @@ const EditarProyecto = () => {
                         type='number'
                         placeholder='70.000'
                         required
+                        defaultValue={proyecData.presupuesto}
                     />
                 </label>
 
@@ -59,6 +76,7 @@ const EditarProyecto = () => {
                         className='bg-gray-50 border border-gray-600 p-2 rounded-lg m-2'
                         type="date"
                         required
+                        defaultValue={proyecData.fechaInicio}
                     />
                 </label>
                 <label htmlFor='fechaFin'>
@@ -68,6 +86,7 @@ const EditarProyecto = () => {
                         className='bg-gray-50 border border-gray-600 p-2 rounded-lg m-2'
                         type="date"
                         required
+                        defaultValue={proyecData.fechaFin}
                     />
                 </label>
 
