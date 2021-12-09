@@ -17,6 +17,10 @@ const Usuarios = () => {
     console.log(data);
   }, [data]);
 
+  useEffect(() => {
+    refetch();
+  }, []);
+
   const Eliminar = (iden) => {
 
     //setId(iden);
@@ -62,7 +66,9 @@ const Usuarios = () => {
                   <td>{p.estado}</td>
                   <td>
                     <div className='flex w-full justify-around'>
+                      <Link to={`/usuarios/editar/${p._id}`}>
                       <i class="far fa-edit"></i>
+                        </Link>
                       <i className='fas fa-trash'
 
                         onClick={() => Eliminar(p.correo)
