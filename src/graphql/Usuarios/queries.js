@@ -14,7 +14,7 @@ query Usuarios {
   }
 `;
 
-const GET_USUARIO= gql`
+const GET_USUARIO = gql`
 query Query($id: String!) {
   Usuario(_id: $id) {
    nombre
@@ -23,9 +23,9 @@ query Query($id: String!) {
   identificacion
     rol
     estado
-     
+    password
   }
 }
 `;
 
-export {GET_USUARIOS,GET_USUARIO};
+export { GET_USUARIOS, GET_USUARIO };

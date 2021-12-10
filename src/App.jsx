@@ -22,6 +22,7 @@ import EditarUsuario from 'pages/usuarios/EditarUsuario';
 import { AuthContext } from 'context/authContext';
 import { setContext } from '@apollo/client/link/context';
 import EditarProyecto from 'pages/proyectos/EditarProyecto';
+import EditarPerfil from 'pages/perfil/EditarPerfil';
 
 // import PrivateRoute from 'components/PrivateRoute';
 const httpLink = createHttpLink({
@@ -91,6 +92,7 @@ function App() {
               <Route path='/' element={<PrivateLayout />}>
                 <Route path='' element={<Index />} />
                 <Route path='perfil' element={<Perfil />} />
+                <Route path='editarperfil/:_id' element={<EditarPerfil />} />
                 <Route path='usuarios' element={<Usuarios />} />
                 <Route path='crearusuario' element={<NuevoUsuario />} />
                 <Route path='/usuarios/editar/:_id' element={<EditarUsuario />} />

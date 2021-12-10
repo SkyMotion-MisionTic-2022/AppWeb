@@ -12,31 +12,31 @@ const EditarUsuario = () => {
     const form = useRef(null);
     const [userData, setUserData] = useState({});
     let navigate = useNavigate();
-    
+
     const {
         data: queryData,
         error: queryError,
         loading: queryLoading,
-      } = useQuery(GET_USUARIO, {
+    } = useQuery(GET_USUARIO, {
         variables: { id: _id },
-      });
+    });
 
-      
-  const [editUser, { data: dataMutation, loading: loadingMutation, error: errorMutation }] =
-  useMutation(EDITAR_USUARIO);
-    
-      
-  useEffect(() => {
-   
-    if (queryData) {
-      console.log('dq', queryData);
-     console.log(queryData.Usuario);
-     setUserData(queryData.Usuario);
-    }
-  }, [queryData]);
 
-      const submitForm = async (e) => {
+    const [editUser, { data: dataMutation, loading: loadingMutation, error: errorMutation }] =
+        useMutation(EDITAR_USUARIO);
 
+
+    useEffect(() => {
+
+        if (queryData) {
+            console.log('dq', queryData);
+            console.log(queryData.Usuario);
+            setUserData(queryData.Usuario);
+        }
+    }, [queryData]);
+
+    const submitForm = async (e) => {
+        console.log('si funciona')
         e.preventDefault();
         const fd = new FormData(form.current);
 
@@ -45,13 +45,13 @@ const EditarUsuario = () => {
             usuarioEditado[key] = value;
         });
         await editUser({
-            variables: { id:_id, ...usuarioEditado },
-          });
-      
-          navigate('/usuarios');
-       
+            variables: { id: _id, ...usuarioEditado },
+        });
 
-    };  
+        navigate('/usuarios');
+
+
+    };
     return (
         <div>
             <h4 className='text-3xl font-extrabold text-gray-900 p-8 ml-64'>
@@ -107,8 +107,8 @@ const EditarUsuario = () => {
                         defaultValue={userData.correo}
                     />
                 </label>
-               
-               
+
+
 
                 <label htmlFor='rol'>
                     Rol

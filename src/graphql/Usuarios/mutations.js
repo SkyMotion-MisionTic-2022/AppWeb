@@ -16,21 +16,37 @@ mutation Mutation($nombre: String!, $apellido: String!, $identificacion: String!
 `;
 
 const EDITAR_PERFIL = gql`
-  mutation EditarUsuario($id: String!) {
-    editarUsuario(_id: $id) {
-      nombre
-      apellido
-      identificacion
-      correo
-      rol
-    }
+  mutation EditarPerfil(
+    $id: String!, 
+    $nombre: String, 
+    $apellido: String, 
+    $identificacion: String, 
+    $correo: String, 
+    $rol: Enum_Rol, 
+    $estado: Enum_EstadoUsuario, 
+    $password: String
+    ) {
+    editarPerfil(
+      _id: $id, 
+      nombre: $nombre, 
+      apellido: $apellido, 
+      identificacion: $identificacion, 
+      correo: $correo, 
+      rol: $rol, 
+      estado: $estado, 
+      password: $password
+      ) {
+        token
+        error
+        authorized
   }
+}
 `;
 
 const EDITAR_USUARIO = gql`
-mutation Mutation($id: String!, $nombre: String, $apellido: String, $identificacion: String, $correo: String, $rol: Enum_Rol, $estado: Enum_EstadoUsuario) {
+mutation EditarUsuario($id: String!, $nombre: String, $apellido: String, $identificacion: String, $correo: String, $rol: Enum_Rol, $estado: Enum_EstadoUsuario) {
   editarUsuario(_id: $id, nombre: $nombre, apellido: $apellido, identificacion: $identificacion, correo: $correo, rol: $rol, estado: $estado) {
-     nombre
+    _id
   }
 }
 `;
