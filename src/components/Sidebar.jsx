@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 
+
 const SidebarLinks = () => {
+
+
   return (
     <ul className='mt-12'>
       <SidebarRoute to='' title='Inicio' icon='fas fa-home' />
@@ -13,7 +16,7 @@ const SidebarLinks = () => {
       <SidebarRoute to='' title='Logout' icon='fas fa-sign-out-alt' />
     </ul>
   );
-};  
+};
 
 const Sidebar = () => {
   const [open, setOpen] = useState(true);

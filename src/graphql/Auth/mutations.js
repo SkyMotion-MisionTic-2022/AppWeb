@@ -44,4 +44,14 @@ const VALIDATE_TOKEN = gql`
   }
 `;
 
-export { CREAR_USUARIO, LOGIN, VALIDATE_TOKEN };
+const REGISTRO=gql`
+mutation Mutation($nombre: String!, $apellido: String!, $identificacion: String!, $correo: String!, $rol: Enum_Rol!, $password: String!) {
+  registro(nombre: $nombre, apellido: $apellido, identificacion: $identificacion, correo: $correo, rol: $rol, password: $password) {
+    token
+    error
+    authorized
+  }
+}
+`;
+
+export { CREAR_USUARIO, LOGIN, VALIDATE_TOKEN,REGISTRO };

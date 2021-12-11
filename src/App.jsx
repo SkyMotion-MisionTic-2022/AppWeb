@@ -12,6 +12,7 @@ import Bienvenidos from 'pages/Bienvenidos'
 import Avances from 'pages/Avances';
 import Perfil from 'pages/perfil/Perfil';
 import Login from 'pages/autenticacion/login';
+import Registro from 'pages/autenticacion/registro';
 import jwt_decode from 'jwt-decode';
 import 'styles/globals.css';
 import 'styles/tabla.css';
@@ -87,6 +88,7 @@ function App() {
             <Routes>
               <Route path='/auth' element={<PublicLayout />}>
                 <Route path='login' element={<Login />} />
+                <Route path='registro' element={<Registro />} />
                 <Route path='bienvenidos' element={<Bienvenidos />} />
               </Route>
               <Route path='/' element={<PrivateLayout />}>
