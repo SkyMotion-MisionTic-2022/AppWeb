@@ -12,6 +12,8 @@ const Proyectos = () => {
     const { data, refetch } = useQuery(GET_PROYECTOS);
     const { userData, setUserData } = useUser();
     const [mostrarAccion, setMostrarAccion] = useState(false);
+    const [crearProyecto, setcrearProyecto] = useState(false);
+    
 
     const [eliminarProyecto, { data: dataMutation, loading: loadingMutation, error: errorMutation }] =
         useMutation(ELIMINAR_PROYECTO);
@@ -25,6 +27,10 @@ const Proyectos = () => {
         if (userData.rol === "LIDER" || userData.rol === "ADMINISTRADOR") {
             setMostrarAccion(true)
         }
+        if (userData.rol === "LIDER") {
+            setcrearProyecto(true)
+        }    
+           
     }, []);
 
 
@@ -94,7 +100,7 @@ const Proyectos = () => {
                 </tbody>
 
             </table>
-            {mostrarAccion ? (
+            {crearProyecto ? (
             <div className='flex flex-row justify-around'>
                 <Link to="/crearproyecto">
                     <Boton titulo='Crear Proyecto'>
