@@ -44,6 +44,7 @@ const EditarUsuario = () => {
         fd.forEach((value, key) => {
             usuarioEditado[key] = value;
         });
+        console.log(usuarioEditado)
         await editUser({
             variables: { id: _id, ...usuarioEditado },
         });
@@ -61,81 +62,64 @@ const EditarUsuario = () => {
                 onSubmit={submitForm}
 
             >
-                <label htmlFor='nombre'>
+                <label>
                     Nombre
                     <input
-                        name='nombre'
                         className='bg-gray-50 border border-gray-600 p-2 rounded-lg m-2'
                         type='text'
-                        placeholder='Nombre'
-                        required
                         defaultValue={userData.nombre}
+                        disabled
                     />
                 </label>
 
-                <label htmlFor='apellido'>
+                <label>
                     Apellido
                     <input
-                        name='apellido'
                         className='bg-gray-50 border border-gray-600 p-2 rounded-lg m-2'
                         type='text'
                         placeholder='apellido'
-                        required
+                        disabled
                         defaultValue={userData.apellido}
                     />
                 </label>
 
-                <label htmlFor='identificacion'>
+                <label>
                     Identificacion
                     <input
-                        name='identificacion'
                         className='bg-gray-50 border border-gray-600 p-2 rounded-lg m-2'
                         type='text'
-                        placeholder='identificacion'
-                        required
+                        disabled
                         defaultValue={userData.identificacion}
                     />
                 </label>
 
-                <label htmlFor='correo'>
+                <label>
                     Correo
                     <input
-                        name='correo'
                         className='bg-gray-50 border border-gray-600 p-2 rounded-lg m-2'
                         type='email'
-                        required
+                        disabled
                         defaultValue={userData.correo}
                     />
                 </label>
 
-
-
-                <label htmlFor='rol'>
+                <label>
                     Rol
-                    <select
+                    <input
                         className='bg-gray-50 border border-gray-600 p-2 rounded-lg m-2'
-                        name='rol'
-                        required
+                        type='text'
+                        disabled
                         defaultValue={userData.rol}
-                    >
-
-                        <option disabled value={0}>
-                            Seleccione una opción
-                        </option>
-                        <option>ESTUDIANTE</option>
-                        <option>LIDER</option>
-                        <option>ADMINISTRADOR</option>
-
-                    </select>
+                    />
                 </label>
 
+
                 <label htmlFor='estado'>
-                    Rol
+                    Estado
                     <select
                         className='bg-gray-50 border border-gray-600 p-2 rounded-lg m-2'
                         name='estado'
                         required
-                        defaultValue={userData.estado}
                     >
 
                         <option disabled value={0}>
