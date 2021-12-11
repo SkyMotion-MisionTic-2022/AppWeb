@@ -1,14 +1,17 @@
 import { GET_PROYECTOS } from 'graphql/Proyectos/queries';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useQuery, useMutation } from '@apollo/client';
 import Boton from '../../components/Boton';
 import { Link } from 'react-router-dom';
 import { ELIMINAR_PROYECTO } from 'graphql/Proyectos/mutations';
+import { useUser } from 'context/userContext';
 
 
 const Proyectos = () => {
     // const { loading, error, data } = useQuery(GET_PROYECTOS);
     const { data, refetch } = useQuery(GET_PROYECTOS);
+    const { userData, setUserData } = useUser();
+    const [mostrarAccion, setMostrarAccion] = useState(false);
 
     const [eliminarProyecto, { data: dataMutation, loading: loadingMutation, error: errorMutation }] =
         useMutation(ELIMINAR_PROYECTO);
@@ -16,6 +19,13 @@ const Proyectos = () => {
     useEffect(() => {
         console.log(data);
     }, [data]);
+
+    useEffect(() => {
+        console.log("user" + JSON.stringify(userData));
+        if (userData.rol === "LIDER" || userData.rol === "ADMINISTRADOR") {
+            setMostrarAccion(true)
+        }
+    }, []);
 
 
 
@@ -47,7 +57,7 @@ const Proyectos = () => {
                         <th>Fase</th>
                         <th>Fecha inicio</th>
                         <th>Fecha fin</th>
-                        <th>Acciones</th>
+                        { mostrarAccion ? (<th>Acciones</th>) : console.log("no acciones")}
 
                     </tr>
                 </thead>
@@ -61,19 +71,22 @@ const Proyectos = () => {
                                     <td>{p.fase}</td>
                                     <td>{p.fechaInicio}</td>
                                     <td>{p.fechaFin}</td>
-                                    <td>
-                                        <div className='flex w-full justify-around'>
+                                    {mostrarAccion ? (
+                                        <td>
+                                            <div className='flex w-full justify-around'>
 
-                                            <Link to={`/proyectos/editar/${p._id}`}>
-                                                <i class="far fa-edit"></i>
-                                            </Link>
-                                            <i className='fas fa-trash'
+                                                <Link to={`/proyectos/editar/${p._id}`}>
+                                                    <i class="far fa-edit"></i>
+                                                </Link>
+                                                <i className='fas fa-trash'
 
-                                                onClick={() => Eliminar(p._id)
-                                                }>
-                                            </i>
-                                        </div>
-                                    </td>
+                                                    onClick={() => Eliminar(p._id)
+                                                    }>
+                                                </i>
+                                            </div>
+                                        </td>
+
+                                    ) : console.log("no acciones")}
 
                                 </tr>
                             );
@@ -81,13 +94,14 @@ const Proyectos = () => {
                 </tbody>
 
             </table>
-
+            {mostrarAccion ? (
             <div className='flex flex-row justify-around'>
                 <Link to="/crearproyecto">
                     <Boton titulo='Crear Proyecto'>
                     </Boton>
                 </Link>
             </div>
+            ): console.log("no muestra nada")}
 
 
 
