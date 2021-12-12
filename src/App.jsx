@@ -101,9 +101,9 @@ function App() {
                 <Route path='/usuarios/editar/:_id' element={<EditarUsuario />} />
                 <Route path='proyectos' element={<Proyectos />} />
                 <Route path='crearproyecto' element={<NuevoProyecto />} />
-                <Route path='/proyectos/editar/:_id' element={<EditarProyecto />} />
-                <Route path='inscripciones' element={<Inscripciones />} />
-                <Route path='avances' element={<Avances />} />
+                <Route path='proyectos/editar/:_id' element={<EditarProyecto />} />
+                <Route path='inscripciones/:_id' element={<Inscripciones />} />
+                <Route path='avances/:_id' element={<Avances />} />
                 <Route path='crearAvance' element={<CrearAvance />} />
               </Route>
             </Routes>
