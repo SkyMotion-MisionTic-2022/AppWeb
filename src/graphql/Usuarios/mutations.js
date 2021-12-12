@@ -44,9 +44,9 @@ const EDITAR_PERFIL = gql`
 `;
 
 const EDITAR_USUARIO = gql`
-mutation EditarUsuario($id: String!, $nombre: String, $apellido: String, $identificacion: String, $correo: String, $rol: Enum_Rol, $estado: Enum_EstadoUsuario) {
-  editarUsuario(_id: $id, nombre: $nombre, apellido: $apellido, identificacion: $identificacion, correo: $correo, rol: $rol, estado: $estado) {
-    _id
+mutation EditarUsuario($id: String!, $estado: Enum_EstadoUsuario) {
+  editarUsuario(_id: $id, estado: $estado) {
+    estado
   }
 }
 `;

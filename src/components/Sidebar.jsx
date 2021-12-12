@@ -2,7 +2,10 @@ import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { Tooltip } from '@material-ui/core';
 
+
 const SidebarLinks = () => {
+
+
   return (
     <ul className='mt-12'>
       <SidebarRoute to='' title='Inicio' icon='fas fa-home' />
