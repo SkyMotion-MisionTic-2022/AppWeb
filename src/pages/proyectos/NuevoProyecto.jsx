@@ -48,8 +48,9 @@ const NuevoProyecto = () => {
                 nuevoProyecto[key] = value;
             }
           });
-
+         if(nuevoProyecto["objetivos"]){
           nuevoProyecto["objetivos"] = Object.values(nuevoProyecto.objetivos);  
+         } 
         nuevoProyecto["presupuesto"] = parseFloat(nuevoProyecto["presupuesto"]);
         nuevoProyecto["lider"]=userData._id;
 

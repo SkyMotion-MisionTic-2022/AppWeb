@@ -86,21 +86,17 @@ const Proyectos = () => {
                                                     <Link to={`/proyectos/editar/${p._id}`}>
                                                         <i class="far fa-edit"></i>
                                                     </Link>
-                                                    <i className='fas fa-trash'
-
-                                                        onClick={() => Eliminar(p._id)
-                                                        }>
-                                                    </i>
+                                                  
                                                 </div>
 
                                             ) : console.log("no acciones")}
 
                                             <i class="fas fa-search-plus"></i>
                                             <Link to={`/inscripciones/${p._id}`}>
-                                            <i class="fas fa-user-plus"></i>
+                                            <i class="fas fa-user-check"></i>
                                             </Link>
                                             <Link to={`/avances/${p._id}`}>
-                                            <i class="fas fa-tasks"></i>
+                                            <i class="fas fa-rocket"></i>
                                             </Link>
                                         </div>
                                     </td>
