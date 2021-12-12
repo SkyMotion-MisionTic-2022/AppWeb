@@ -1,34 +1,44 @@
 import React, { useRef, useState, useEffect } from 'react';
-import { useMutation,useQuery } from '@apollo/client';
+import { useMutation, useQuery } from '@apollo/client';
 import { GET_PROYECTO } from 'graphql/Proyectos/queries';
 import Boton from '../../components/Boton';
 import { useParams, Link } from 'react-router-dom';
 import { nanoid } from 'nanoid';
 import { CreateObjectiveContext } from 'context/createObjectiveContext';
 import { useCreateObjective } from 'context/createObjectiveContext';
-
+import { useUser } from 'context/userContext';
+import { useNavigate } from 'react-router-dom';
 
 const EditarProyecto = () => {
     const form = useRef(null);
     const { _id } = useParams();
     const [proyecData, setproyecData] = useState({});
-    
+    const { userData, setUserData } = useUser();
+    const [esAdmin, setesAdmin] = useState(true);
+
     const {
         data: queryData,
         error: queryError,
         loading: queryLoading,
-      } = useQuery(GET_PROYECTO, {
+    } = useQuery(GET_PROYECTO, {
         variables: { id: _id },
-      });
-      useEffect(() => {
-   
+    });
+    useEffect(() => {
+
         if (queryData) {
-          console.log('dq', queryData);
-         console.log(queryData.Proyecto);
-         setproyecData(queryData.Proyecto);
+            console.log('dq', queryData);
+            console.log(queryData.Proyecto);
+            setproyecData(queryData.Proyecto);
         }
-      }, [queryData]);
-   
+    }, [queryData]);
+
+    useEffect(() => {
+        if (userData.rol === "LIDER") {
+            setesAdmin(false);
+        }
+
+    }, []);
+
     const submitForm = async (e) => {
         e.preventDefault();
         const fd = new FormData(form.current);
@@ -48,67 +58,126 @@ const EditarProyecto = () => {
             >
                 <label htmlFor='nombre'>
                     Nombre
-                    <input
+                    {esAdmin ? (<input
+                        className='bg-gray-50 border border-gray-600 p-2 rounded-lg m-2'
+                        type='text'
+                        disabled
+                        defaultValue={proyecData.nombre}
+                    />) : (<input
                         name='nombre'
                         className='bg-gray-50 border border-gray-600 p-2 rounded-lg m-2'
                         type='text'
                         placeholder='Nombre proyecto'
                         required
                         defaultValue={proyecData.nombre}
-                    />
+                    />)}
                 </label>
                 <label htmlFor='presupuesto'>
                     Presupuesto
-                    <input
+                    {esAdmin ? (<input
+                        className='bg-gray-50 border border-gray-600 p-2 rounded-lg m-2'
+                        disabled
+                        defaultValue={proyecData.presupuesto}
+                    />) : (<input
                         name='presupuesto'
                         className='bg-gray-50 border border-gray-600 p-2 rounded-lg m-2'
                         type='number'
                         placeholder='70.000'
                         required
                         defaultValue={proyecData.presupuesto}
-                    />
+                    />)}
                 </label>
 
-                <label htmlFor='fechaInicio'>
+                <label>
                     Fecha inicio
                     <input
-                        name='fechaInicio'
+
                         className='bg-gray-50 border border-gray-600 p-2 rounded-lg m-2'
-                        type="date"
-                        required
+                        type="text"
+                        disabled
                         defaultValue={proyecData.fechaInicio}
                     />
                 </label>
-                <label htmlFor='fechaFin'>
+                <label>
                     Fecha fin
                     <input
-                        name='fechaFin'
+
                         className='bg-gray-50 border border-gray-600 p-2 rounded-lg m-2'
-                        type="date"
-                        required
+                        type="text"
+                        disabled
                         defaultValue={proyecData.fechaFin}
                     />
                 </label>
 
                 <label htmlFor='lider'>
                     Lider
-                    <select
+                    <input
+
                         className='bg-gray-50 border border-gray-600 p-2 rounded-lg m-2'
-                        name='lider'
+                        type='text'
+                        placeholder='Nombre proyecto'
+                        disabled
+                        defaultValue={userData.correo}
+                    />
+                </label>
+                <label htmlFor='estado'>
+                    Estado
+                    {esAdmin ? (<select
+                        className='bg-gray-50 border border-gray-600 p-2 rounded-lg m-2'
+                        name='estado'
                         required
-                        defaultValue={0}
+                        defaultValue={proyecData.estado}
                     >
 
                         <option disabled value={0}>
                             Seleccione una opción
                         </option>
-                        <option>619adf7960d6c38bb4ce1d22</option>
-                        <option>619ceafc20aed9151fcc0d38</option>
+                        <option>ACTIVO</option>
+                        <option>INACTIVO</option>
+
+                    </select>) : (<input
+
+                        className='bg-gray-50 border border-gray-600 p-2 rounded-lg m-2'
+                        type='text'
+                        disabled
+                        defaultValue={proyecData.estado}
+                    />
+                    )}
+                </label>
+
+                <label htmlFor='fase'>
+                    Fase
+                    {esAdmin ? (<select
+                        className='bg-gray-50 border border-gray-600 p-2 rounded-lg m-2'
+                        name='fase'
+                        required
+                        defaultValue={proyecData.fase}
+                    >
+
+                        <option disabled value={0}>
+                            Seleccione una opción
+                        </option>
+                        <option>INICIADO</option>
+                        <option>DESARROLLO</option>
+                        <option>TERMINADO</option>
+                        <option>NULO</option>
 
                     </select>
+                    ):(
+                        <input
+
+                        className='bg-gray-50 border border-gray-600 p-2 rounded-lg m-2'
+                        type='text'
+                        disabled
+                        defaultValue={proyecData.fase}
+                    />
+
+                    )}
                 </label>
+
+
                 <div className='flex flex-row justify-around' >
-               
+
 
                 </div>
 

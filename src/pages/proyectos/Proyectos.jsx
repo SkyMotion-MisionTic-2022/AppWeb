@@ -30,6 +30,7 @@ const Proyectos = () => {
         if (userData.rol === "LIDER") {
             setcrearProyecto(true)
         }
+        refetch(); 
 
     }, []);
 
