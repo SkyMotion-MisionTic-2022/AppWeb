@@ -91,8 +91,9 @@ const Proyectos = () => {
                                                 </div>
 
                                             ) : console.log("no acciones")}
-
+                                             <Link to={`/proyectos/${p._id}`}>
                                             <i class="fas fa-search-plus"></i>
+                                            </Link>
                                             <Link to={`/inscripciones/${p._id}`}>
                                             <i class="fas fa-user-check"></i>
                                             </Link>

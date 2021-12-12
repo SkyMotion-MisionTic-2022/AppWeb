@@ -35,9 +35,7 @@ const EditarProyecto = () => {
             //console.log('dq', queryData);
             console.log(queryData.Proyecto);
             setproyecData(queryData.Proyecto);
-            setListaObjetivos(proyecData.objetivos);
-            console.log(listaObjetivos);
-            console.log(proyecData.objetivos);
+
         }
     }, [queryData]);
 
@@ -51,7 +49,7 @@ const EditarProyecto = () => {
     const submitForm = async (e) => {
         e.preventDefault();
         const fd = new FormData(form.current);
-        if(esAdmin){
+        if (esAdmin) {
             const proyectoEditado = {};
             fd.forEach((value, key) => {
                 proyectoEditado[key] = value;
@@ -187,18 +185,61 @@ const EditarProyecto = () => {
                         <option>NULO</option>
 
                     </select>
-                    ):(
+                    ) : (
                         <input
 
-                        className='bg-gray-50 border border-gray-600 p-2 rounded-lg m-2'
-                        type='text'
-                        disabled
-                        defaultValue={proyecData.fase}
-                    />
+                            className='bg-gray-50 border border-gray-600 p-2 rounded-lg m-2'
+                            type='text'
+                            disabled
+                            defaultValue={proyecData.fase}
+                        />
 
                     )}
                 </label>
+                {console.log("objetivos" + JSON.stringify(proyecData.objetivos))}
+                {proyecData.objetivos &&
+                    proyecData.objetivos.map((p) => {
+                        return (
+                            <div className='flex items-center'>
+                            <label htmlFor={`nested||objetivos||${p.id}||descripcion`}>
+                                Descripcion
+                                <input
+                                    name={`nested||objetivos||${p.id}||descripcion`}
+                                    className='bg-gray-50 border border-gray-600 p-2 rounded-lg m-2'
+                                    type='text'
+                                    placeholder='Descripcion'
+                                    required
+                                    defaultValue={p.descripcion}
+                                    
+                                />
+                            </label>
+                
+                            <label htmlFor={`nested||objetivos||${p.id}||tipo`}>
+                                Tipo
+                                <select
+                                    className='bg-gray-50 border border-gray-600 p-2 rounded-lg m-2'
+                                    name={`nested||objetivos||${p.id}||tipo`}
+                                    required
+                                    defaultValue={p.descripcion}
+                                >
+                
+                                    <option disabled value={0}>
+                                        Seleccione una opción
+                                    </option>
+                                    <option>GENERAL</option>
+                                    <option>ESPECIFICO</option>
+                
+                                </select>
+                            </label>
+                
+                            <i
+                                className='fas fa-minus mt-6 bg-red-500 text-white p-2 rounded-full cursor-pointer hover:bg-red-400'
+                                //onClick={() => removeObjetivo(id)}
+                            />
+                            </div>
 
+                        );
+                    })}
 
                 <div className='flex flex-row justify-around' >
 
