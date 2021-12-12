@@ -8,6 +8,7 @@ import { CreateObjectiveContext } from 'context/createObjectiveContext';
 import { useCreateObjective } from 'context/createObjectiveContext';
 import { useUser } from 'context/userContext';
 import { useNavigate } from 'react-router-dom';
+import { EDITAR_PROYECTO_ADMIN } from 'graphql/Proyectos/mutations';
 
 const EditarProyecto = () => {
     const form = useRef(null);
@@ -15,6 +16,10 @@ const EditarProyecto = () => {
     const [proyecData, setproyecData] = useState({});
     const { userData, setUserData } = useUser();
     const [esAdmin, setesAdmin] = useState(true);
+    let navigate = useNavigate();
+
+    const [editProy, { data: dataMutation, loading: loadingMutation, error: errorMutation }] =
+        useMutation(EDITAR_PROYECTO_ADMIN);
 
     const {
         data: queryData,
@@ -42,6 +47,21 @@ const EditarProyecto = () => {
     const submitForm = async (e) => {
         e.preventDefault();
         const fd = new FormData(form.current);
+        if(esAdmin){
+            const proyectoEditado = {};
+            fd.forEach((value, key) => {
+                proyectoEditado[key] = value;
+            });
+            console.log(proyectoEditado);
+
+            editProy({
+                variables: { id: _id, ...proyectoEditado },
+            });
+
+        }
+
+
+        navigate('/proyectos');
 
     };
 
