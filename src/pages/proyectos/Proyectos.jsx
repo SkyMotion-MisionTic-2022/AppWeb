@@ -86,11 +86,7 @@ const Proyectos = () => {
                                                     <Link to={`/proyectos/editar/${p._id}`}>
                                                         <i class="far fa-edit"></i>
                                                     </Link>
-                                                    <i className='fas fa-trash'
-
-                                                        onClick={() => Eliminar(p._id)
-                                                        }>
-                                                    </i>
+                                                  
                                                 </div>
 
                                             ) : console.log("no acciones")}
