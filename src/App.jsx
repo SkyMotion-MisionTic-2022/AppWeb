@@ -9,7 +9,7 @@ import Usuarios from 'pages/usuarios/Usuarios';
 import Proyectos from 'pages/proyectos/Proyectos';
 import Inscripciones from 'pages/Inscripciones';
 import Bienvenidos from 'pages/Bienvenidos'
-import Avances from 'pages/Avances';
+import Avances from 'pages/avances/Avances';
 import Perfil from 'pages/perfil/Perfil';
 import Login from 'pages/autenticacion/login';
 import Registro from 'pages/autenticacion/registro';
@@ -24,6 +24,7 @@ import { AuthContext } from 'context/authContext';
 import { setContext } from '@apollo/client/link/context';
 import EditarProyecto from 'pages/proyectos/EditarProyecto';
 import EditarPerfil from 'pages/perfil/EditarPerfil';
+import CrearAvance from 'pages/avances/CrearAvance';
 
 // import PrivateRoute from 'components/PrivateRoute';
 const httpLink = createHttpLink({
@@ -100,9 +101,10 @@ function App() {
                 <Route path='/usuarios/editar/:_id' element={<EditarUsuario />} />
                 <Route path='proyectos' element={<Proyectos />} />
                 <Route path='crearproyecto' element={<NuevoProyecto />} />
-                <Route path='/proyectos/editar/:_id' element={<EditarProyecto />} />
-                <Route path='inscripciones' element={<Inscripciones />} />
-                <Route path='avances' element={<Avances />} />
+                <Route path='proyectos/editar/:_id' element={<EditarProyecto />} />
+                <Route path='inscripciones/:_id' element={<Inscripciones />} />
+                <Route path='avances/:_id' element={<Avances />} />
+                <Route path='crearAvance' element={<CrearAvance />} />
               </Route>
             </Routes>
           </BrowserRouter>

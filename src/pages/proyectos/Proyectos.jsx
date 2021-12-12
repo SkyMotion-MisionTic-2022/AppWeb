@@ -13,7 +13,7 @@ const Proyectos = () => {
     const { userData, setUserData } = useUser();
     const [mostrarAccion, setMostrarAccion] = useState(false);
     const [crearProyecto, setcrearProyecto] = useState(false);
-    
+
 
     const [eliminarProyecto, { data: dataMutation, loading: loadingMutation, error: errorMutation }] =
         useMutation(ELIMINAR_PROYECTO);
@@ -29,8 +29,8 @@ const Proyectos = () => {
         }
         if (userData.rol === "LIDER") {
             setcrearProyecto(true)
-        }    
-           
+        }
+
     }, []);
 
 
@@ -63,7 +63,7 @@ const Proyectos = () => {
                         <th>Fase</th>
                         <th>Fecha inicio</th>
                         <th>Fecha fin</th>
-                        { mostrarAccion ? (<th>Acciones</th>) : console.log("no acciones")}
+                        <th>Acciones</th>
 
                     </tr>
                 </thead>
@@ -77,22 +77,29 @@ const Proyectos = () => {
                                     <td>{p.fase}</td>
                                     <td>{p.fechaInicio}</td>
                                     <td>{p.fechaFin}</td>
-                                    {mostrarAccion ? (
-                                        <td>
-                                            <div className='flex w-full justify-around'>
+                                    <td>
+                                        <div className='flex w-full justify-around'>
+                                            {mostrarAccion ? (
 
-                                                <Link to={`/proyectos/editar/${p._id}`}>
-                                                    <i class="far fa-edit"></i>
-                                                </Link>
-                                                <i className='fas fa-trash'
+                                                <div >
 
-                                                    onClick={() => Eliminar(p._id)
-                                                    }>
-                                                </i>
-                                            </div>
-                                        </td>
+                                                    <Link to={`/proyectos/editar/${p._id}`}>
+                                                        <i class="far fa-edit"></i>
+                                                    </Link>
+                                                  
+                                                </div>
 
-                                    ) : console.log("no acciones")}
+                                            ) : console.log("no acciones")}
+
+                                            <i class="fas fa-search-plus"></i>
+                                            <Link to={`/inscripciones/${p._id}`}>
+                                            <i class="fas fa-user-check"></i>
+                                            </Link>
+                                            <Link to={`/avances/${p._id}`}>
+                                            <i class="fas fa-rocket"></i>
+                                            </Link>
+                                        </div>
+                                    </td>
 
                                 </tr>
                             );
@@ -101,13 +108,13 @@ const Proyectos = () => {
 
             </table>
             {crearProyecto ? (
-            <div className='flex flex-row justify-around'>
-                <Link to="/crearproyecto">
-                    <Boton titulo='Crear Proyecto'>
-                    </Boton>
-                </Link>
-            </div>
-            ): console.log("no muestra nada")}
+                <div className='flex flex-row justify-around'>
+                    <Link to="/crearproyecto">
+                        <Boton titulo='Crear Proyecto'>
+                        </Boton>
+                    </Link>
+                </div>
+            ) : console.log("no muestra nada")}
 
 
 
