@@ -17,6 +17,7 @@ const EditarProyecto = () => {
     const { userData, setUserData } = useUser();
     const [esAdmin, setesAdmin] = useState(true);
     let navigate = useNavigate();
+    const [listaObjetivos, setListaObjetivos] = useState([]);
 
     const [editProy, { data: dataMutation, loading: loadingMutation, error: errorMutation }] =
         useMutation(EDITAR_PROYECTO_ADMIN);
@@ -31,9 +32,12 @@ const EditarProyecto = () => {
     useEffect(() => {
 
         if (queryData) {
-            console.log('dq', queryData);
+            //console.log('dq', queryData);
             console.log(queryData.Proyecto);
             setproyecData(queryData.Proyecto);
+            setListaObjetivos(proyecData.objetivos);
+            console.log(listaObjetivos);
+            console.log(proyecData.objetivos);
         }
     }, [queryData]);
 
