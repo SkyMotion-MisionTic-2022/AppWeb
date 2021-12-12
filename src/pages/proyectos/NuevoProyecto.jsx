@@ -7,9 +7,11 @@ import { nanoid } from 'nanoid';
 import { CreateObjectiveContext } from 'context/createObjectiveContext';
 import { useCreateObjective } from 'context/createObjectiveContext';
 import { useUser } from 'context/userContext';
+import { useNavigate } from 'react-router-dom';
 
 const NuevoProyecto = () => {
     const form = useRef(null);
+    let navigate = useNavigate();
     const { userData, setUserData } = useUser();
     const [crearProyecto, { data: dataMutation, loading: loadingMutation, error: errorMutation }] =
         useMutation(CREAR_PROYECTO);
@@ -59,6 +61,9 @@ const NuevoProyecto = () => {
         await crearProyecto({
             variables: { ...nuevoProyecto },
         });
+
+        navigate('/proyectos');
+
 
 
     };
