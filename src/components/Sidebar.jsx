@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
+import { Tooltip } from '@material-ui/core';
 
 const SidebarLinks = () => {
   return (
@@ -13,7 +14,7 @@ const SidebarLinks = () => {
       <SidebarRoute to='' title='Logout' icon='fas fa-sign-out-alt' />
     </ul>
   );
-};  
+};
 
 const Sidebar = () => {
   const [open, setOpen] = useState(true);
@@ -63,8 +64,11 @@ const SidebarRoute = ({ to, title, icon }) => {
         }
       >
         <div className='flex items-center'>
-          <i className={icon} />
-          <span className='text-sm  ml-2'>{title}</span>
+          <Tooltip title={title} arrow>
+            <i className={icon} />
+            {/* <span className='text-sm  ml-2'>{title}</span> */}
+          </Tooltip>
+
         </div>
       </NavLink>
     </li>

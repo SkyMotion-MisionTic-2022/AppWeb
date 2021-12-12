@@ -14,7 +14,7 @@ const Usuarios = () => {
 
 
   useEffect(() => {
-    console.log(data);
+    console.log('mire aca', data);
   }, [data]);
 
   useEffect(() => {
