@@ -93,10 +93,10 @@ const Proyectos = () => {
 
                                             <i class="fas fa-search-plus"></i>
                                             <Link to={`/inscripciones/${p._id}`}>
-                                            <i class="fas fa-user-plus"></i>
+                                            <i class="fas fa-user-check"></i>
                                             </Link>
                                             <Link to={`/avances/${p._id}`}>
-                                            <i class="fas fa-tasks"></i>
+                                            <i class="fas fa-rocket"></i>
                                             </Link>
                                         </div>
                                     </td>
