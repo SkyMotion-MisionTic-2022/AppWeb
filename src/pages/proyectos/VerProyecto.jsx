@@ -1,21 +1,17 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { useMutation, useQuery } from '@apollo/client';
 import { GET_PROYECTO } from 'graphql/Proyectos/queries';
+import { GET_AVANCES_FILTRADOS } from 'graphql/Avances/queries';
 import Boton from '../../components/Boton';
 import { useParams, Link } from 'react-router-dom';
-import { nanoid } from 'nanoid';
-import { CreateObjectiveContext } from 'context/createObjectiveContext';
-import { useCreateObjective } from 'context/createObjectiveContext';
 import { useUser } from 'context/userContext';
-import { useNavigate } from 'react-router-dom';
-import { EDITAR_PROYECTO_ADMIN } from 'graphql/Proyectos/mutations';
 
 const VerProyecto = () => {
-    const form = useRef(null);
+
     const { _id } = useParams();
     const [proyecData, setproyecData] = useState({});
     const { userData, setUserData } = useUser();
-    let navigate = useNavigate();
+   
 
 
     const {
@@ -89,7 +85,7 @@ const VerProyecto = () => {
                         type='text'
                         placeholder='Nombre proyecto'
                         disabled
-                        defaultValue={userData.correo}
+                        defaultValue={userData.nombre}
                     />
                 </label>
 
@@ -153,10 +149,7 @@ const VerProyecto = () => {
                         );
                     })}
 
-                <div className='flex flex-row justify-around' >
-
-
-                </div>
+                <AvancesTabla />
 
                 <div className='flex flex-row justify-around'>
                     <Link to="/proyectos">
@@ -174,5 +167,59 @@ const VerProyecto = () => {
         </div >
     )
 }
+const AvancesTabla = () => {
+    const { _id } = useParams();
+    const [avanceData, setavanceData] = useState({});
+    const {
+        data: queryData,
+        error: queryError,
+        loading: queryLoading,
+    } = useQuery(GET_AVANCES_FILTRADOS, {
+        variables: { idProyecto: _id },
+    });
 
+    useEffect(() => {
+
+        if (queryData) {
+            console.log('dq', queryData);
+           // console.log(queryData.Proyecto);
+            setavanceData(queryData.filtrarAvance);
+
+        }
+    }, [queryData]);
+
+    return(
+
+        <div>
+
+            <span className='text-blue-400 flex flex-row justify-around'> Avances:</span>
+            <div className='flex flex-row justify-center p-4'>
+                <table className='tabla'>
+                    <thead>
+                        <tr>
+                            <th>ID Avance</th>
+                            <th>Fecha</th>
+                            <th>Descripción</th>
+                            <th>Estudiante</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    {queryData && queryData.filtrarAvance.map((a) => {
+                            return (
+                                <tr key={a._id}>
+                                    <td>{a._id}</td>
+                                    <td>{a.fecha}</td>
+                                    <td>{a.descripcion}</td>
+                                    <td>{a.creadoPor.nombre} {a.creadoPor.apellido} </td>
+                                   
+                                </tr>
+                            );})}
+                       
+                    </tbody>
+                </table>
+            </div>
+        
+        </div>
+    )
+}
 export default VerProyecto
