@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import PrivateLayout from 'layouts/PrivateLayout';
 import PublicLayout from 'layouts/PublicLayout';
-import LayoutAutenticacion from 'layouts/LayoutAutenticacion'
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { UserContext } from 'context/userContext';
 import Index from 'pages/Index';
 import Usuarios from 'pages/usuarios/Usuarios';
 import Proyectos from 'pages/proyectos/Proyectos';
-import Inscripciones from 'pages/Inscripciones';
+import Inscripciones  from 'pages/inscripciones/Inscripciones';
 import Bienvenidos from 'pages/Bienvenidos'
 import Avances from 'pages/avances/Avances';
 import Perfil from 'pages/perfil/Perfil';
