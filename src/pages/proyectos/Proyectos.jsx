@@ -51,7 +51,7 @@ const Proyectos = () => {
 
     return (
         <div>
-            <h4 className='flex justify-center p-4 text text-2xl m-14 text-blue-400'>
+            <h4 className='flex justify-center p-4 font-bold text-3xl m-2 text-blue-600'>
                 Gestion de proyectos
             </h4>
 

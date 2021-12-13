@@ -51,9 +51,11 @@ const EditarPerfil = () => {
     };
 
     return (
-        <div>
-            <h2 className='flex justify-center p-4 text text-2xl text-blue-400'>Edita tu Perfil</h2>
-            <div >
+        <div className='flex flex-col'>
+            <section className=' flex flex-col   items-center justify-center bg-blue-100 border-2 border-blue-400 mx-44 my-4 rounded-3xl'>
+            <h2 className='  p-4 text text-2xl text-blue-400'>
+            Edita tu Perfil
+            </h2>
                 <form ref={form}
                     onSubmit={submitForm}
                     className='grid justify-items-center'
@@ -155,7 +157,6 @@ const EditarPerfil = () => {
                     </label> */}
 
 
-
                     <div className='flex flex-row justify-around my-6'>
                         <Link to='/perfil'>
                             <Boton titulo={'Volver a Perfil'} />
@@ -168,8 +169,9 @@ const EditarPerfil = () => {
                         </button>
                     </div>
                 </form>
-            </div>
-        </div >
+              
+            </section>
+        </div>
     )
 }
 

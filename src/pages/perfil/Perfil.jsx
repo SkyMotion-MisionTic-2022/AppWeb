@@ -31,7 +31,9 @@ const Perfil = () => {
     return (
         <div className='place-content-center'>
             <div>
-                <h2 className='flex justify-center p-4 text text-2xl text-blue-400'>Perfil</h2>
+                <h2 className='flex justify-center p-4 font-bold text-3xl m-2 text-blue-600'>
+                Perfil
+                </h2>
             </div>
             <div className='flex flex-row justify-center p-4'>
                 <table className='tabla'>

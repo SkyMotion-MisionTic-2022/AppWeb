@@ -36,7 +36,7 @@ const Usuarios = () => {
 
   return (
     <div>
-      <h4 className='text-3xl font-extrabold text-gray-900 p-8 ml-64'>
+      <h4 className='flex justify-center p-4 font-bold text-3xl m-2 text-blue-600'>
         Gestion de usuarios
       </h4>
 
