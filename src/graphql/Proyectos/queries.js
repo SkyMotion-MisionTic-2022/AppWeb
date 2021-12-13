@@ -24,6 +24,8 @@ query Query($id: String!) {
     fase
     lider {
       correo
+      nombre
+      apellido
     }
     objetivos {
       _id
@@ -34,4 +36,4 @@ query Query($id: String!) {
 }
 `;
 
-export {GET_PROYECTOS, GET_PROYECTO};
+export { GET_PROYECTOS, GET_PROYECTO };

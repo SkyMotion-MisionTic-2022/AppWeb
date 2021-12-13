@@ -40,7 +40,7 @@ const EditarPerfil = () => {
         const fd = new FormData(form.current);
 
         const perfilEditado = {};
-        console.log('variable fd:', fd)
+        // console.log('variable fd:', fd)
         fd.forEach((value, key) => {
             perfilEditado[key] = value;
         });
@@ -135,7 +135,7 @@ const EditarPerfil = () => {
                         </select>
                     </label>
 
-                    <label htmlFor='estado'>
+                    {/* <label htmlFor='estado'>
                         Estado
                         <select
                             className='bg-gray-50 border border-gray-600 p-2 rounded-lg m-2'
@@ -152,7 +152,7 @@ const EditarPerfil = () => {
                             <option>NO_AUTORIZADO</option>
 
                         </select>
-                    </label>
+                    </label> */}
 
 
 
