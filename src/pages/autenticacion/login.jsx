@@ -37,9 +37,9 @@ const Login = () => {
   }, [dataMutation, setToken, navigate]);
 
   return (
-    <div className='flex flex-col items-center justify-center w-full h-full p-10'>
-      <section className="flex flex-col border-2  border-blue-400 rounded-3xl p-12 m-8">
-        <h1 className='flex justify-center text-2xl'>
+    <div className='bg-color flex flex-col items-center justify-center w-full h-full p-10  '>
+      <section className="flex flex-col border-2  border-gray-100 rounded-3xl p-12 m-8">
+        <h1 className='flex justify-center text-2xl text-gray-100'>
           Iniciar sesión
         </h1>
         <form className='flex flex-col' onSubmit={submitForm} ref={form}>
@@ -65,15 +65,19 @@ const Login = () => {
           </label>
           <button
             type='submit'
-            className='bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-2 border border-blue-500 hover:border-transparent  rounded-full'
+            className='bg-transparent hover:bg-blue-500 text-gray-100 font-semibold hover:text-white py-2 px-2 border border-gray-100 hover:border-transparent  rounded-full'
           >
             Iniciar sesion
           </button>
 
         </form>
-        <span className='flex justify-center mt-4'>¿No tienes una cuenta?</span>
+        <span className='flex justify-center mt-4 text-gray-100'>
+          ¿No tienes una cuenta?
+        </span>
         <Link to='/auth/registro'>
-          <span className='flex justify-center text-blue-700'>Regístrate</span>
+          <span className='flex justify-center text-gray-100 hover:text-gray-300'>
+            Regístrate
+          </span>
         </Link>
       </section>
     </div>

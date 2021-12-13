@@ -38,9 +38,9 @@ const Registro = () => {
     return (
       <div className=" ">
         <form ref={form} onSubmit={submitForm}>
-          <div className="flex flex-col items-center  ">
-            <section className="flex flex-col border-2  border-blue-400 rounded-3xl p-20 m-8">
-              <h4 className="flex justify-center p-2  text-2xl   ">
+          <div className="bg-color flex flex-col items-center">
+            <section className="flex flex-col border-2  border-gray-100 rounded-3xl p-20 m-8">
+              <h4 className="flex justify-center p-2  text-2xl text-gray-100">
                 Regístrate
               </h4>
               <label htmlFor="nombre ">
@@ -95,7 +95,7 @@ const Registro = () => {
 
               <label htmlFor="rol">
                 <select
-                  className="registro-input  m-2"
+                  className="registro-input  text-gray-100 m-2"
                   name="rol"
                   required
                   defaultValue={0}
@@ -103,15 +103,15 @@ const Registro = () => {
                   <option disabled value={0}>
                     Seleccione un Rol:
                   </option>
-                  <option>ESTUDIANTE</option>
-                  <option>LIDER</option>
-                  <option>ADMINISTRADOR</option>
+                  <option className='text-black'>ESTUDIANTE</option>
+                  <option className='text-black'>LIDER</option>
+                  <option className='text-black'>ADMINISTRADOR</option>
                 </select>
               </label>
               <div className="flex flex-row justify-around">
                 <button
                   type="submit"
-                  class="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white m-4 py-2 px-16 border rounded-full  border-blue-500 hover:border-transparent"
+                  class="bg-transparent hover:bg-blue-500 text-gray-100 font-semibold hover:text-white m-4 py-2 px-16 border rounded-full  border-gray-100 hover:border-transparent"
                 >
                   Registro
                 </button>

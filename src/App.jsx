@@ -103,7 +103,7 @@ function App() {
                 <Route path='crearproyecto' element={<NuevoProyecto />} />
                 <Route path='proyectos/editar/:_id' element={<EditarProyecto />} />
                 <Route path='proyectos/:_id' element={<VerProyecto />} />
-                <Route path='inscripciones/:_id' element={<Inscripciones />} />
+                <Route path='inscripciones/' element={<Inscripciones />} />
                 <Route path='avances/:_id' element={<Avances />} />
                 <Route path='crearAvance' element={<CrearAvance />} />
               </Route>

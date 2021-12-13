@@ -19,22 +19,27 @@ const Inscripciones = () => {
   }, [data]);
   if (loading) return <div>Loading...</div>;
   return (
-    <PrivateRoute roleList={['ADMINISTRADOR', 'LIDER']}>
-      <div className='p-10'>
-        <div>Pagina de inscripciones</div>
-        <div className='my-4'>
-          <AccordionInscripcion
-            titulo='Inscripciones aprobadas'
-            data={data.Inscripciones.filter((el) => el.estado === 'ACEPTADO')}
+    <PrivateRoute roleList={["ADMINISTRADOR", "LIDER"]}>
+      <div className="p-10 ">
+        <div>
+          <h4 className="flex justify-center p-4 font-bold text-3xl m-2 text-blue-600">
+            Pagina de inscripciones
+          </h4>
+        </div>
+        <div className="my-4">
+          <AccordionInscripcion 
+            className=""
+            titulo="Inscripciones aprobadas"
+            data={data.Inscripciones.filter((el) => el.estado === "ACEPTADO")}
           />
           <AccordionInscripcion
-            titulo='Inscripciones pendientes'
-            data={data.Inscripciones.filter((el) => el.estado === 'PENDIENTE')}
+            titulo="Inscripciones pendientes"
+            data={data.Inscripciones.filter((el) => el.estado === "PENDIENTE")}
             refetch={refetch}
           />
           <AccordionInscripcion
-            titulo='Inscripciones rechazadas'
-            data={data.Inscripciones.filter((el) => el.estado === 'RECHAZADO')}
+            titulo="Inscripciones rechazadas"
+            data={data.Inscripciones.filter((el) => el.estado === "RECHAZADO")}
           />
         </div>
       </div>

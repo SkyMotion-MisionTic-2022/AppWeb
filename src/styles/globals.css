@@ -29,7 +29,7 @@
     border-left: 0px;
     border-top: 0px;
     border-right: 0px;
-    border-bottom: 2px solid rgb(78, 175, 255);
+    border-bottom: 2px solid #ffff;
     font-size: 16px;
     font-family: 'Muli', sans-serif;
     margin-bottom: 20px;
@@ -37,4 +37,10 @@
     outline: none;
     height: 50px;
     
+}
+
+.registro-input::placeholder { color: #ffff; }
+
+.bg-color{
+  background: linear-gradient(#3ba0ff, #2a46eb);
 }
