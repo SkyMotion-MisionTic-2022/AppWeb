@@ -304,7 +304,6 @@ const FormularioObservacion = ({ idProyecto, idAvance }) => {
         // toast.success('Avance modificado con éxito')
     };
 
-
     return (
         <form
             ref={form} onSubmit={sendFormCrearOb}
