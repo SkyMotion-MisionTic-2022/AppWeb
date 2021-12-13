@@ -3,6 +3,7 @@ import { useUser } from 'context/userContext';
 import { useQuery } from '@apollo/client';
 import { Link } from 'react-router-dom';
 import { GET_USUARIO } from 'graphql/Usuarios/queries';
+import { Tooltip } from '@material-ui/core';
 
 const Perfil = () => {
     const { userData } = useUser();
@@ -32,7 +33,7 @@ const Perfil = () => {
         <div className='place-content-center'>
             <div>
                 <h2 className='flex justify-center p-4 font-bold text-3xl m-2 text-blue-600'>
-                Perfil
+                    Perfil
                 </h2>
             </div>
             <div className='flex flex-row justify-center p-4'>
@@ -55,9 +56,11 @@ const Perfil = () => {
                         {/* <td>{dataGql.password}</td> */}
                         <td>{dataGql.rol}</td>
                         <td>
-                            <Link to={`/editarperfil/${userData._id}`}>
-                                <i class="far fa-edit"></i>
-                            </Link>
+                            <Tooltip title='Editar' arrow>
+                                <Link to={`/editarperfil/${userData._id}`}>
+                                    <i class="far fa-edit"></i>
+                                </Link>
+                            </Tooltip>
                         </td>
                     </tr>
                 </table>

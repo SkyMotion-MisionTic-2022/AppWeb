@@ -9,6 +9,7 @@ import { toast } from 'react-toastify';
 import { CREAR_AVANCE, EDITAR_AVANCE, CREAR_OBSERVACION } from 'graphql/Avances/mutations';
 import { GET_PROYECTO } from 'graphql/Proyectos/queries';
 import { useUser } from 'context/userContext';
+import PrivateComponent from 'components/PrivateComponent';
 
 const Avances = () => {
     const { _id } = useParams();
@@ -82,9 +83,11 @@ const Avances = () => {
                                         <td>{a.creadoPor.nombre} {a.creadoPor.apellido} </td>
                                         <td>observacion </td>
                                         <td>
-                                            <Tooltip title='Agregar Observación' arrow>
-                                                <i className="fas fa-plus-circle" onClick={() => { setOpenDObservacion(true) }}></i>
-                                            </Tooltip>
+                                            <PrivateComponent roleList={['LIDER']}>
+                                                <Tooltip title='Agregar Observación' arrow>
+                                                    <i className="fas fa-plus-circle" onClick={() => { setOpenDObservacion(true) }}></i>
+                                                </Tooltip>
+                                            </PrivateComponent>
                                             <Tooltip title='Editar Avance' arrow>
                                                 {/* <i className="fas fa-edit" onClick={() => setOpenDEditar(true)} ></i> */}
                                                 <i className="fas fa-edit" onClick={() => ActivarDEdicion({ identificador: a._id })} ></i>
@@ -102,7 +105,9 @@ const Avances = () => {
                 <Link to='/proyectos'>
                     <Boton titulo='Volver a Proyectos'></Boton>
                 </Link>
-                <button onClick={() => { setOpenDCrear(true) }}>Crear Avance</button>
+                <PrivateComponent roleList='ESTUDIANTE'>
+                    <button onClick={() => { setOpenDCrear(true) }}>Crear Avance</button>
+                </PrivateComponent>
             </div>
             <Dialog open={openDCrear} onClose={() => setOpenDCrear(false)}>
                 <FormularioAvance idProyecto={dataP.Proyecto._id} />

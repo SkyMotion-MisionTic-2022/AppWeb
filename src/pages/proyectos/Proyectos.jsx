@@ -5,6 +5,8 @@ import Boton from '../../components/Boton';
 import { Link } from 'react-router-dom';
 import { ELIMINAR_PROYECTO } from 'graphql/Proyectos/mutations';
 import { useUser } from 'context/userContext';
+import PrivateComponent from 'components/PrivateComponent';
+import { Tooltip } from '@material-ui/core';
 
 
 const Proyectos = () => {
@@ -30,7 +32,7 @@ const Proyectos = () => {
         if (userData.rol === "LIDER") {
             setcrearProyecto(true)
         }
-        refetch(); 
+        refetch();
 
     }, []);
 
@@ -83,23 +85,36 @@ const Proyectos = () => {
                                             {mostrarAccion ? (
 
                                                 <div >
+                                                    <Tooltip title='Editar' arrow>
+                                                        <Link to={`/proyectos/editar/${p._id}`}>
+                                                            <i class="far fa-edit"></i>
+                                                        </Link>
+                                                    </Tooltip>
 
-                                                    <Link to={`/proyectos/editar/${p._id}`}>
-                                                        <i class="far fa-edit"></i>
-                                                    </Link>
-                                                  
                                                 </div>
 
                                             ) : console.log("no acciones")}
-                                             <Link to={`/proyectos/${p._id}`}>
-                                            <i class="fas fa-search-plus"></i>
-                                            </Link>
-                                            <Link to={`/inscripciones/${p._id}`}>
-                                            <i class="fas fa-user-check"></i>
-                                            </Link>
-                                            <Link to={`/avances/${p._id}`}>
-                                            <i class="fas fa-rocket"></i>
-                                            </Link>
+                                            <PrivateComponent roleList={['LIDER']}>
+                                                <Tooltip title='Detalles' arrow>
+                                                    <Link to={`/proyectos/${p._id}`}>
+                                                        <i class="fas fa-search-plus"></i>
+                                                    </Link>
+                                                </Tooltip>
+                                            </PrivateComponent>
+                                            <PrivateComponent roleList={['ESTUDIANTE']}>
+                                                <Tooltip title='Inscripciones' arrow>
+                                                    <Link to={`/inscripciones/${p._id}`}>
+                                                        <i class="fas fa-user-check"></i>
+                                                    </Link>
+                                                </Tooltip>
+                                            </PrivateComponent>
+                                            <PrivateComponent roleList={['LIDER', 'ESTUDIANTE']}>
+                                                <Tooltip title='Avances' arrow>
+                                                    <Link to={`/avances/${p._id}`}>
+                                                        <i class="fas fa-rocket"></i>
+                                                    </Link>
+                                                </Tooltip>
+                                            </PrivateComponent>
                                         </div>
                                     </td>
 
