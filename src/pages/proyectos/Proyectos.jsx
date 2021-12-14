@@ -21,7 +21,8 @@ const Proyectos = () => {
         useMutation(ELIMINAR_PROYECTO);
 
     useEffect(() => {
-        console.log(data);
+        console.log('log de query data', data);
+        console.log('tamaño', data.Proyectos.length);
     }, [data]);
 
     useEffect(() => {
@@ -56,74 +57,79 @@ const Proyectos = () => {
             <h4 className='flex justify-center p-4 font-bold text-3xl m-2 text-blue-600'>
                 Gestion de proyectos
             </h4>
+            <div>
+                {data.Proyectos.length === 0 ?
+                    <h4 className='flex justify-center p-4 font-bold'>No hay proyectos registrados a tu cargo</h4> :
 
+                    <table className='tabla'>
+                        <thead>
+                            <tr>
+                                <th>Nombre</th>
+                                <th>Estado</th>
+                                <th>Fase</th>
+                                <th>Fecha inicio</th>
+                                <th>Fecha fin</th>
+                                <th>Acciones</th>
 
-            <table className='tabla'>
-                <thead>
-                    <tr>
-                        <th>Nombre</th>
-                        <th>Estado</th>
-                        <th>Fase</th>
-                        <th>Fecha inicio</th>
-                        <th>Fecha fin</th>
-                        <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {data &&
+                                data.Proyectos.map((p) => {
+                                    return (
+                                        <tr key={p._id}>
+                                            <td>{p.nombre}</td>
+                                            <td>{p.estado}</td>
+                                            <td>{p.fase}</td>
+                                            <td>{p.fechaInicio}</td>
+                                            <td>{p.fechaFin}</td>
+                                            <td>
+                                                <div className='flex w-full justify-around'>
+                                                    {mostrarAccion ? (
 
-                    </tr>
-                </thead>
-                <tbody>
-                    {data &&
-                        data.Proyectos.map((p) => {
-                            return (
-                                <tr key={p._id}>
-                                    <td>{p.nombre}</td>
-                                    <td>{p.estado}</td>
-                                    <td>{p.fase}</td>
-                                    <td>{p.fechaInicio}</td>
-                                    <td>{p.fechaFin}</td>
-                                    <td>
-                                        <div className='flex w-full justify-around'>
-                                            {mostrarAccion ? (
+                                                        <div >
+                                                            <Tooltip title='Editar' arrow>
+                                                                <Link to={`/proyectos/editar/${p._id}`}>
+                                                                    <i class="far fa-edit"></i>
+                                                                </Link>
+                                                            </Tooltip>
 
-                                                <div >
-                                                    <Tooltip title='Editar' arrow>
-                                                        <Link to={`/proyectos/editar/${p._id}`}>
-                                                            <i class="far fa-edit"></i>
-                                                        </Link>
-                                                    </Tooltip>
+                                                        </div>
 
+                                                    ) : console.log("no acciones")}
+                                                    <PrivateComponent roleList={['LIDER']}>
+                                                        <Tooltip title='Detalles' arrow>
+                                                            <Link to={`/proyectos/${p._id}`}>
+                                                                <i class="fas fa-search-plus"></i>
+                                                            </Link>
+                                                        </Tooltip>
+                                                    </PrivateComponent>
+                                                    <PrivateComponent roleList={['LIDER']}>
+                                                        <Tooltip title='Inscripciones' arrow>
+                                                            <Link to={`/inscripciones/${p._id}`}>
+                                                                <i class="fas fa-user-check"></i>
+                                                            </Link>
+                                                        </Tooltip>
+                                                    </PrivateComponent>
+                                                    <PrivateComponent roleList={['LIDER', 'ESTUDIANTE']}>
+                                                        <Tooltip title='Avances' arrow>
+                                                            <Link to={`/avances/${p._id}`}>
+                                                                <i class="fas fa-rocket"></i>
+                                                            </Link>
+                                                        </Tooltip>
+                                                    </PrivateComponent>
                                                 </div>
+                                            </td>
 
-                                            ) : console.log("no acciones")}
-                                            <PrivateComponent roleList={['LIDER']}>
-                                                <Tooltip title='Detalles' arrow>
-                                                    <Link to={`/proyectos/${p._id}`}>
-                                                        <i class="fas fa-search-plus"></i>
-                                                    </Link>
-                                                </Tooltip>
-                                            </PrivateComponent>
-                                            <PrivateComponent roleList={['ESTUDIANTE']}>
-                                                <Tooltip title='Inscripciones' arrow>
-                                                    <Link to={`/inscripciones/${p._id}`}>
-                                                        <i class="fas fa-user-check"></i>
-                                                    </Link>
-                                                </Tooltip>
-                                            </PrivateComponent>
-                                            <PrivateComponent roleList={['LIDER', 'ESTUDIANTE']}>
-                                                <Tooltip title='Avances' arrow>
-                                                    <Link to={`/avances/${p._id}`}>
-                                                        <i class="fas fa-rocket"></i>
-                                                    </Link>
-                                                </Tooltip>
-                                            </PrivateComponent>
-                                        </div>
-                                    </td>
+                                        </tr>
+                                    );
+                                })}
+                        </tbody>
 
-                                </tr>
-                            );
-                        })}
-                </tbody>
+                    </table>
+                }
+            </div>
 
-            </table>
             {crearProyecto ? (
                 <div className='flex flex-row justify-around'>
                     <Link to="/crearproyecto">
@@ -132,6 +138,7 @@ const Proyectos = () => {
                     </Link>
                 </div>
             ) : console.log("no muestra nada")}
+
 
 
 

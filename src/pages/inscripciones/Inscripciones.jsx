@@ -13,10 +13,13 @@ import {
 
 const Inscripciones = () => {
   const { data, loading, error, refetch } = useQuery(GET_INSCRIPCIONES);
+  // usar el use Params para capturar id
+  // falta el quey de mutación para crear la Inscripcion
 
   useEffect(() => {
     console.log(data);
   }, [data]);
+
   if (loading) return <div>Loading...</div>;
   return (
     <PrivateRoute roleList={["ADMINISTRADOR", "LIDER"]}>
@@ -27,7 +30,7 @@ const Inscripciones = () => {
           </h4>
         </div>
         <div className="my-4">
-          <AccordionInscripcion 
+          <AccordionInscripcion
             className=""
             titulo="Inscripciones aprobadas"
             data={data.Inscripciones.filter((el) => el.estado === "ACEPTADO")}
@@ -47,7 +50,7 @@ const Inscripciones = () => {
   );
 };
 
-const AccordionInscripcion = ({ data, titulo, refetch = () => {} }) => {
+const AccordionInscripcion = ({ data, titulo, refetch = () => { } }) => {
   return (
     <AccordionStyled>
       <AccordionSummaryStyled>

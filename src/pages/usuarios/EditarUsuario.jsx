@@ -5,6 +5,7 @@ import { EDITAR_USUARIO } from 'graphql/Usuarios/mutations';
 import { useQuery, useMutation } from '@apollo/client';
 import Boton from '../../components/Boton';
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 
 const EditarUsuario = () => {
@@ -48,7 +49,7 @@ const EditarUsuario = () => {
         await editUser({
             variables: { id: _id, ...usuarioEditado },
         });
-
+        toast.success('Usuario editado con éxito');
         navigate('/usuarios');
 
 

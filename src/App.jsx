@@ -6,7 +6,7 @@ import { UserContext } from 'context/userContext';
 import Index from 'pages/Index';
 import Usuarios from 'pages/usuarios/Usuarios';
 import Proyectos from 'pages/proyectos/Proyectos';
-import Inscripciones  from 'pages/inscripciones/Inscripciones';
+import Inscripciones from 'pages/inscripciones/Inscripciones';
 import Bienvenidos from 'pages/Bienvenidos'
 import Avances from 'pages/avances/Avances';
 import Perfil from 'pages/perfil/Perfil';
@@ -103,7 +103,7 @@ function App() {
                 <Route path='crearproyecto' element={<NuevoProyecto />} />
                 <Route path='proyectos/editar/:_id' element={<EditarProyecto />} />
                 <Route path='proyectos/:_id' element={<VerProyecto />} />
-                <Route path='inscripciones/' element={<Inscripciones />} />
+                <Route path='inscripciones/:_id' element={<Inscripciones />} />
                 <Route path='avances/:_id' element={<Avances />} />
                 <Route path='crearAvance' element={<CrearAvance />} />
               </Route>

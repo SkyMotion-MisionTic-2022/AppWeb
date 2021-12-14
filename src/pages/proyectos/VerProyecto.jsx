@@ -11,7 +11,7 @@ const VerProyecto = () => {
     const { _id } = useParams();
     const [proyecData, setproyecData] = useState({});
     const { userData, setUserData } = useUser();
-   
+
 
 
     const {
@@ -112,38 +112,36 @@ const VerProyecto = () => {
 
                 </label>
                 <div className='flex flex-row justify-around'>
-                <span className='text-blue-400'> Objetivos del Proyecto:</span>
+                    <span className='text-blue-400'> Objetivos del Proyecto:</span>
                 </div>
                 {proyecData.objetivos &&
                     proyecData.objetivos.map((p) => {
                         return (
                             <div className='flex flex-row justify-around' >
-                               
-                            <div className='flex items-center'>
-                                <label>
-                                    Descripcion
-                                    <input
-            
-                                        className='bg-gray-50 border border-gray-600 p-2 rounded-lg m-2'
-                                        type='text'
-                                        disabled
-                                        defaultValue={p.descripcion}
+                                <div className='flex items-center w-full justify-around'>
+                                    <label>
+                                        Descripcion
+                                        <input
+                                            className='bg-gray-50 border border-gray-600 px-6 rounded-lg m-2 h-6 w-40 '
+                                            type='text'
+                                            disabled
+                                            defaultValue={p.descripcion}
 
-                                    />
-                                </label>
-                                <label>
-                                    Tipo
-                                    <input
-            
-                                        className='bg-gray-50 border border-gray-600 p-2 rounded-lg m-2'
-                                        type='text'
-                                        disabled
-                                        defaultValue={p.tipo}
+                                        />
+                                    </label>
+                                    <label>
+                                        Tipo
+                                        <input
 
-                                    />
-                                </label>
-                                
-                            </div>
+                                            className='bg-gray-50 border border-gray-600 p-2 rounded-lg m-2'
+                                            type='text'
+                                            disabled
+                                            defaultValue={p.tipo}
+
+                                        />
+                                    </label>
+
+                                </div>
                             </div>
 
                         );
@@ -156,7 +154,7 @@ const VerProyecto = () => {
                         <Boton titulo='ver proyectos'>
                         </Boton>
                     </Link>
-                   
+
                 </div>
 
 
@@ -182,13 +180,13 @@ const AvancesTabla = () => {
 
         if (queryData) {
             console.log('dq', queryData);
-           // console.log(queryData.Proyecto);
+            // console.log(queryData.Proyecto);
             setavanceData(queryData.filtrarAvance);
 
         }
     }, [queryData]);
 
-    return(
+    return (
 
         <div>
 
@@ -204,21 +202,22 @@ const AvancesTabla = () => {
                         </tr>
                     </thead>
                     <tbody>
-                    {queryData && queryData.filtrarAvance.map((a) => {
+                        {queryData && queryData.filtrarAvance.map((a) => {
                             return (
                                 <tr key={a._id}>
                                     <td>{a._id}</td>
                                     <td>{a.fecha}</td>
                                     <td>{a.descripcion}</td>
                                     <td>{a.creadoPor.nombre} {a.creadoPor.apellido} </td>
-                                   
+
                                 </tr>
-                            );})}
-                       
+                            );
+                        })}
+
                     </tbody>
                 </table>
             </div>
-        
+
         </div>
     )
 }

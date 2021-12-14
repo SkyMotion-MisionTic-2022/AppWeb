@@ -125,7 +125,8 @@ const Avances = () => {
 const FormularioAvance = ({ idProyecto }) => {
     const form = useRef(null);
     const { userData } = useUser();
-    const [crearAvance, { data: dataMutation, loading, error }] = useMutation(CREAR_AVANCE);
+    const [crearAvance, { data: dataMutation, loading, error }] =
+        useMutation(CREAR_AVANCE, { refetchQueries: [{ query: GET_AVANCES_FILTRADOS }] });
     // let navigate = useNavigate();
 
     const sendForm = async (e) => {
