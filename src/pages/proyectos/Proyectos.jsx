@@ -1,5 +1,5 @@
 import { GET_PROYECTOS } from 'graphql/Proyectos/queries';
-import React, { useEffect, useState } from 'react';
+import React, { Fragment, useEffect, useState } from 'react';
 import { useQuery, useMutation } from '@apollo/client';
 import Boton from '../../components/Boton';
 import { Link } from 'react-router-dom';
@@ -7,6 +7,9 @@ import { ELIMINAR_PROYECTO } from 'graphql/Proyectos/mutations';
 import { useUser } from 'context/userContext';
 import PrivateComponent from 'components/PrivateComponent';
 import { Tooltip } from '@material-ui/core';
+import ButtonLoading from 'components/ButtonLoading';
+import { CREAR_INSCRIPCION } from 'graphql/Inscripciones/mutaciones';
+import { toast } from 'react-toastify';
 
 
 const Proyectos = () => {
@@ -104,6 +107,13 @@ const Proyectos = () => {
                                                             </Link>
                                                         </Tooltip>
                                                     </PrivateComponent>
+                                                    <PrivateComponent roleList={['ESTUDIANTE']}>
+                                                    <InscripcionProyecto
+                                                        idProyecto={p._id}
+                                                        estado={p.estado}
+                                                        inscripciones={p.inscripciones}
+                                                        />
+                                                    </PrivateComponent>
                                                     <PrivateComponent roleList={['LIDER']}>
                                                         <Tooltip title='Inscripciones' arrow>
                                                             <Link to={`/inscripciones/${p._id}`}>
@@ -143,7 +153,56 @@ const Proyectos = () => {
 
 
         </div>
-    )
-}
+    );
+};
+
+const InscripcionProyecto = ({ idProyecto, estado, inscripciones }) => {
+    // console.log("id proyecto", idProyecto)
+    const [estadoInscripcion, setEstadoInscripcion] = useState('');
+    // falta captura del error de la mutacion
+    const [crearInscripcion, { data, loading }] = useMutation(CREAR_INSCRIPCION);
+    const { userData } = useUser();
+    // console.log(userData);
+  
+    useEffect(() => {
+      if (userData && inscripciones) {
+        const flt = inscripciones.filter(
+          (el) => el.estudiante._id === userData._id
+        );
+        if (flt.length > 0) {
+          setEstadoInscripcion(flt[0].estado);
+        }
+      }
+    }, [userData, inscripciones]);
+  
+    useEffect(() => {
+      if (data) {
+        toast.success('inscripcion creada con exito');
+      }
+    }, [data]);
+  
+    const confirmarInscripcion = () => {
+      crearInscripcion({
+        variables: { proyecto: idProyecto, estudiante: userData._id },
+      });
+    };
+  
+    return (
+      <Fragment>
+        {estadoInscripcion !== '' ? (
+          <span>
+            Ya estas inscrito en este proyecto y el estado es {estadoInscripcion}
+          </span>
+        ) : (
+          <ButtonLoading
+            onClick={() => confirmarInscripcion()}
+            disabled={estado === 'INACTIVO'}
+            loading={loading}
+            text='Inscribirme en este proyecto'
+          />
+        )}
+      </Fragment>
+    );
+  };
 
 export default Proyectos;
