@@ -11,7 +11,7 @@ import { Tooltip } from '@material-ui/core';
 
 const Proyectos = () => {
     // const { loading, error, data } = useQuery(GET_PROYECTOS);
-    const { data, refetch } = useQuery(GET_PROYECTOS);
+    const { data, refetch, loading } = useQuery(GET_PROYECTOS);
     const { userData, setUserData } = useUser();
     const [mostrarAccion, setMostrarAccion] = useState(false);
     const [crearProyecto, setcrearProyecto] = useState(false);
@@ -22,7 +22,7 @@ const Proyectos = () => {
 
     useEffect(() => {
         console.log('log de query data', data);
-        console.log('tamaño', data.Proyectos.length);
+        // console.log('tamaño', data.Proyectos.length);
     }, [data]);
 
     useEffect(() => {
@@ -50,7 +50,7 @@ const Proyectos = () => {
         refetch()
     };
 
-
+    if (loading) return <div>Cargando....</div>;
 
     return (
         <div>

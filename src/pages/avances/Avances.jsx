@@ -36,6 +36,11 @@ const Avances = () => {
         setOpenDEditar(true);
     };
 
+    const ActivarDObservacion = ({ identificador }) => {
+        setIdAvance(identificador);
+        setOpenDObservacion(true);
+    };
+
     useEffect(() => {
         refetch();
     }, []);
@@ -85,13 +90,15 @@ const Avances = () => {
                                         <td>
                                             <PrivateComponent roleList={['LIDER']}>
                                                 <Tooltip title='Agregar Observación' arrow>
-                                                    <i className="fas fa-plus-circle" onClick={() => { setOpenDObservacion(true) }}></i>
+                                                    <i className="fas fa-plus-circle" onClick={() => ActivarDObservacion({ identificador: a._id })}></i>
                                                 </Tooltip>
                                             </PrivateComponent>
-                                            <Tooltip title='Editar Avance' arrow>
-                                                {/* <i className="fas fa-edit" onClick={() => setOpenDEditar(true)} ></i> */}
-                                                <i className="fas fa-edit" onClick={() => ActivarDEdicion({ identificador: a._id })} ></i>
-                                            </Tooltip>
+                                            <PrivateComponent roleList={['ESTUDIANTE']}>
+                                                <Tooltip title='Editar Avance' arrow>
+                                                    {/* <i className="fas fa-edit" onClick={() => setOpenDEditar(true)} ></i> */}
+                                                    <i className="fas fa-edit" onClick={() => ActivarDEdicion({ identificador: a._id })} ></i>
+                                                </Tooltip>
+                                            </PrivateComponent>
                                         </td>
                                     </tr>
                                 );
@@ -289,7 +296,7 @@ const FormularioEditar = ({ idProyecto, idAvance }) => {
     )
 };
 
-const FormularioObservacion = ({ idProyecto, idAvance }) => {
+const FormularioObservacion = ({ idAvance }) => {
     const form = useRef(null);
 
     const [addObservacion, { data: dataOb, loading: loadingOb, error: errorOb }] =
@@ -304,17 +311,17 @@ const FormularioObservacion = ({ idProyecto, idAvance }) => {
             nuevaOb[key] = value;
         });
         console.log('nueva Ob', nuevaOb)
-        // await addObservacion({
-        //     variables: { idAvance: idAvance, ...nuevaOb }
-        // });
-        // toast.success('Avance modificado con éxito')
+        await addObservacion({
+            variables: { idAvance: idAvance, campos: nuevaOb }
+        });
+        toast.success('Avance modificado con éxito')
     };
 
     return (
         <form
             ref={form} onSubmit={sendFormCrearOb}
         >
-            <h2>Ingresa una observación {idAvance}</h2>
+            <h2>Ingresa una observación</h2>
             <br />
             <label htmlFor='avance'>
                 ID Avance

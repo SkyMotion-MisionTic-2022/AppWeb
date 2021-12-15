@@ -35,13 +35,16 @@ mutation EditarAvance(
 `;
 
 const CREAR_OBSERVACION = gql`
-mutation CrearObservacion($idAvance: String!, 
+mutation CrearObservacion(
+  $idAvance: String!, 
   $campos: camposObservacion) {
-  crearObservacion(idAvance: $idAvance, 
+  crearObservacion(
+    idAvance: $idAvance, 
     campos: $campos) {
     _id
   }
 }
+
 `;
 
 export { CREAR_AVANCE, EDITAR_AVANCE, CREAR_OBSERVACION }
