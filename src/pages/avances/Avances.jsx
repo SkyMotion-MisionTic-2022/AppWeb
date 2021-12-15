@@ -42,6 +42,9 @@ const Avances = () => {
     };
 
     useEffect(() => {
+        // console.log('observaciones', queryData.filtrarAvance)
+    }, [queryData])
+    useEffect(() => {
         refetch();
     }, []);
 
@@ -74,7 +77,6 @@ const Avances = () => {
                                 <th>Fecha</th>
                                 <th>Descripción</th>
                                 <th>Estudiante</th>
-                                <th>Observaciones</th>
                                 <th>Acciones</th>
                             </tr>
                         </thead>
@@ -86,7 +88,6 @@ const Avances = () => {
                                         <td>{a.fecha}</td>
                                         <td>{a.descripcion}</td>
                                         <td>{a.creadoPor.nombre} {a.creadoPor.apellido} </td>
-                                        <td>observacion </td>
                                         <td>
                                             <PrivateComponent roleList={['LIDER']}>
                                                 <Tooltip title='Agregar Observación' arrow>
@@ -99,7 +100,14 @@ const Avances = () => {
                                                     <i className="fas fa-edit" onClick={() => ActivarDEdicion({ identificador: a._id })} ></i>
                                                 </Tooltip>
                                             </PrivateComponent>
+                                            <Tooltip title='Detalles' arrow>
+                                                <Link to={`/detallesavance/${a._id}`}>
+                                                    <i class="fas fa-search-plus"></i>
+                                                </Link>
+                                            </Tooltip>
                                         </td>
+                                        {/* <td>{a.observaciones[0]}</td> */}
+                                        {/* <td>{a && a.observaciones.forEach((o) => { return (<label>{o.observacion}</label>) })}</td> */}
                                     </tr>
                                 );
                             })}
@@ -125,7 +133,7 @@ const Avances = () => {
             <Dialog open={openDObservacion} onClose={() => setOpenDObservacion(false)}>
                 <FormularioObservacion idProyecto={dataP.Proyecto._id} idAvance={idAvance} />
             </Dialog>
-        </div>
+        </div >
     )
 };
 
@@ -310,7 +318,7 @@ const FormularioObservacion = ({ idAvance }) => {
         fdCrOb.forEach((value, key) => {
             nuevaOb[key] = value;
         });
-        console.log('nueva Ob', nuevaOb)
+        // console.log('nueva Ob', nuevaOb)
         await addObservacion({
             variables: { idAvance: idAvance, campos: nuevaOb }
         });
