@@ -122,7 +122,7 @@ const VerProyecto = () => {
                                     <label>
                                         Descripcion
                                         <input
-                                            className='bg-gray-50 border border-gray-600 px-6 rounded-lg m-2 h-6 w-40 '
+                                            className='bg-gray-50 border border-gray-600 p-2 rounded-lg m-2'
                                             type='text'
                                             disabled
                                             defaultValue={p.descripcion}

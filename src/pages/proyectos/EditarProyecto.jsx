@@ -8,7 +8,7 @@ import { CreateObjectiveContext } from 'context/createObjectiveContext';
 import { useCreateObjective } from 'context/createObjectiveContext';
 import { useUser } from 'context/userContext';
 import { useNavigate } from 'react-router-dom';
-import { EDITAR_PROYECTO_ADMIN } from 'graphql/Proyectos/mutations';
+import { EDITAR_PROYECTO_ADMIN, EDITAR_PROYECTO_LIDER } from 'graphql/Proyectos/mutations';
 
 const EditarProyecto = () => {
     const form = useRef(null);
@@ -21,6 +21,9 @@ const EditarProyecto = () => {
 
     const [editProy, { data: dataMutation, loading: loadingMutation, error: errorMutation }] =
         useMutation(EDITAR_PROYECTO_ADMIN);
+
+    const [editProyLider, { data: dataMutationp, loading: loadingMutationp, error: errorMutationp }] =
+    useMutation(EDITAR_PROYECTO_LIDER);    
 
     const {
         data: queryData,
@@ -49,16 +52,26 @@ const EditarProyecto = () => {
     const submitForm = async (e) => {
         e.preventDefault();
         const fd = new FormData(form.current);
-        if (esAdmin) {
-            const proyectoEditado = {};
-            fd.forEach((value, key) => {
-                proyectoEditado[key] = value;
-            });
-            console.log(proyectoEditado);
+        const proyectoEditado = {};
+        fd.forEach((value, key) => {
+            proyectoEditado[key] = value;
+        });
+       
 
+        if (esAdmin) {
+           
             editProy({
                 variables: { id: _id, ...proyectoEditado },
             });
+
+        }else{
+           
+            proyectoEditado["presupuesto"] = parseFloat(proyectoEditado["presupuesto"]);
+            console.log(proyectoEditado);
+            editProyLider({
+                variables: { id: _id, ...proyectoEditado },
+            });
+
 
         }
 
