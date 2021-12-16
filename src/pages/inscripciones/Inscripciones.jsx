@@ -33,7 +33,7 @@ const Inscripciones = () => {
           <AccordionInscripcion
             className=""
             titulo="Inscripciones aprobadas"
-            data={data.Inscripciones.filter((el) => el.estado === "ACEPTADO")}
+            data={data.Inscripciones.filter((el) => el.estado === "ACEPTADA")}
           />
           <AccordionInscripcion
             titulo="Inscripciones pendientes"
