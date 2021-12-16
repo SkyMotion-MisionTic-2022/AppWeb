@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 .sidebar {
-  @apply w-16 bg-indigo-50 shadow flex-col justify-between;
+  @apply w-16 bg-blue-400 shadow flex-col justify-between;
 }
 
 .sidebar-route {
