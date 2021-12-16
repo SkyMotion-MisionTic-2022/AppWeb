@@ -14,7 +14,11 @@ import { toast } from 'react-toastify';
 
 const Proyectos = () => {
     // const { loading, error, data } = useQuery(GET_PROYECTOS);
+<<<<<<< HEAD
+    const { data, refetch, loading, error } = useQuery(GET_PROYECTOS);
+=======
     const { data, refetch, loading } = useQuery(GET_PROYECTOS);
+>>>>>>> 43ef3fa4ef5618180f63ae9b0e3e122b2e795a16
     const { userData, setUserData } = useUser();
     const [mostrarAccion, setMostrarAccion] = useState(false);
     const [crearProyecto, setcrearProyecto] = useState(false);
@@ -25,7 +29,11 @@ const Proyectos = () => {
 
     useEffect(() => {
         console.log('log de query data', data);
+<<<<<<< HEAD
+       // console.log('tamaño', data.Proyectos.length);
+=======
         // console.log('tamaño', data.Proyectos.length);
+>>>>>>> 43ef3fa4ef5618180f63ae9b0e3e122b2e795a16
     }, [data]);
 
     useEffect(() => {
@@ -53,7 +61,12 @@ const Proyectos = () => {
         refetch()
     };
 
+<<<<<<< HEAD
+    if(loading) return <div>Cargando</div>
+    if(error) return <div>Error</div>
+=======
     if (loading) return <div>Cargando....</div>;
+>>>>>>> 43ef3fa4ef5618180f63ae9b0e3e122b2e795a16
 
     return (
         <div>

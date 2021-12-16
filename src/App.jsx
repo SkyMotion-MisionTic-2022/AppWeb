@@ -18,7 +18,6 @@ import 'styles/tabla.css';
 import { ApolloProvider, ApolloClient, InMemoryCache, createHttpLink } from '@apollo/client';
 import NuevoProyecto from 'pages/proyectos/NuevoProyecto';
 import NuevoUsuario from 'pages/usuarios/NuevoUsuario';
-import EditarUsuario from 'pages/usuarios/EditarUsuario';
 import { AuthContext } from 'context/authContext';
 import { setContext } from '@apollo/client/link/context';
 import EditarProyecto from 'pages/proyectos/EditarProyecto';
@@ -54,7 +53,7 @@ function App() {
   // const [loadingAuth, setLoadingAuth] = useState(true);
 
   const setToken = (token) => {
-    console.log('set token', token);
+   // console.log('set token', token);
     setAuthToken(token);
     if (token) {
       localStorage.setItem('token', JSON.stringify(token));
@@ -77,7 +76,7 @@ function App() {
         rol: decoded.rol,
       });
     }
-    console.log('datos de usuario:', userData)
+   // console.log('datos de usuario:', userData)
   }, [authToken]);
 
 
@@ -98,7 +97,6 @@ function App() {
                 <Route path='editarperfil/:_id' element={<EditarPerfil />} />
                 <Route path='usuarios' element={<Usuarios />} />
                 <Route path='crearusuario' element={<NuevoUsuario />} />
-                <Route path='/usuarios/editar/:_id' element={<EditarUsuario />} />
                 <Route path='proyectos' element={<Proyectos />} />
                 <Route path='crearproyecto' element={<NuevoProyecto />} />
                 <Route path='proyectos/editar/:_id' element={<EditarProyecto />} />

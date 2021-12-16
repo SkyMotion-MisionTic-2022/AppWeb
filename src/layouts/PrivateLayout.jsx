@@ -15,7 +15,7 @@ const PrivateLayout = () => {
     useMutation(VALIDATE_TOKEN);
 
   useEffect(() => {
-    console.log('dm', dataMutation);
+   // console.log('dm', dataMutation);
     if (dataMutation) {
       if (dataMutation.validateToken.authorized) {
         setToken(dataMutation.validateToken.token);
@@ -59,7 +59,7 @@ const PrivateLayout = () => {
   }, [refresh, setToken]);
 
   useEffect(() => {
-    console.log('tkn', authToken, loadingAuth);
+    //console.log('tkn', authToken, loadingAuth);
     if (!loadingAuth && !authToken) {
       navigate('/auth/bienvenidos');
     }
