@@ -22,8 +22,8 @@ import { AuthContext } from 'context/authContext';
 import { setContext } from '@apollo/client/link/context';
 import EditarProyecto from 'pages/proyectos/EditarProyecto';
 import EditarPerfil from 'pages/perfil/EditarPerfil';
-import CrearAvance from 'pages/avances/CrearAvance';
 import VerProyecto from 'pages/proyectos/VerProyecto';
+import VerAvance from 'pages/avances/VerAvance';
 
 // import PrivateRoute from 'components/PrivateRoute';
 const httpLink = createHttpLink({
@@ -103,7 +103,7 @@ function App() {
                 <Route path='proyectos/:_id' element={<VerProyecto />} />
                 <Route path='inscripciones/:_id' element={<Inscripciones />} />
                 <Route path='avances/:_id' element={<Avances />} />
-                <Route path='crearAvance' element={<CrearAvance />} />
+                <Route path='detallesavance/:_id' element={<VerAvance />} />
               </Route>
             </Routes>
           </BrowserRouter>

@@ -36,6 +36,14 @@ const Avances = () => {
         setOpenDEditar(true);
     };
 
+    const ActivarDObservacion = ({ identificador }) => {
+        setIdAvance(identificador);
+        setOpenDObservacion(true);
+    };
+
+    useEffect(() => {
+        // console.log('observaciones', queryData.filtrarAvance)
+    }, [queryData])
     useEffect(() => {
         refetch();
     }, []);
@@ -69,7 +77,6 @@ const Avances = () => {
                                 <th>Fecha</th>
                                 <th>Descripción</th>
                                 <th>Estudiante</th>
-                                <th>Observaciones</th>
                                 <th>Acciones</th>
                             </tr>
                         </thead>
@@ -81,18 +88,26 @@ const Avances = () => {
                                         <td>{a.fecha}</td>
                                         <td>{a.descripcion}</td>
                                         <td>{a.creadoPor.nombre} {a.creadoPor.apellido} </td>
-                                        <td>observacion </td>
                                         <td>
                                             <PrivateComponent roleList={['LIDER']}>
                                                 <Tooltip title='Agregar Observación' arrow>
-                                                    <i className="fas fa-plus-circle" onClick={() => { setOpenDObservacion(true) }}></i>
+                                                    <i className="fas fa-plus-circle" onClick={() => ActivarDObservacion({ identificador: a._id })}></i>
                                                 </Tooltip>
                                             </PrivateComponent>
-                                            <Tooltip title='Editar Avance' arrow>
-                                                {/* <i className="fas fa-edit" onClick={() => setOpenDEditar(true)} ></i> */}
-                                                <i className="fas fa-edit" onClick={() => ActivarDEdicion({ identificador: a._id })} ></i>
+                                            <PrivateComponent roleList={['ESTUDIANTE']}>
+                                                <Tooltip title='Editar Avance' arrow>
+                                                    {/* <i className="fas fa-edit" onClick={() => setOpenDEditar(true)} ></i> */}
+                                                    <i className="fas fa-edit" onClick={() => ActivarDEdicion({ identificador: a._id })} ></i>
+                                                </Tooltip>
+                                            </PrivateComponent>
+                                            <Tooltip title='Detalles' arrow>
+                                                <Link to={`/detallesavance/${a._id}`}>
+                                                    <i class="fas fa-search-plus"></i>
+                                                </Link>
                                             </Tooltip>
                                         </td>
+                                        {/* <td>{a.observaciones[0]}</td> */}
+                                        {/* <td>{a && a.observaciones.forEach((o) => { return (<label>{o.observacion}</label>) })}</td> */}
                                     </tr>
                                 );
                             })}
@@ -118,7 +133,7 @@ const Avances = () => {
             <Dialog open={openDObservacion} onClose={() => setOpenDObservacion(false)}>
                 <FormularioObservacion idProyecto={dataP.Proyecto._id} idAvance={idAvance} />
             </Dialog>
-        </div>
+        </div >
     )
 };
 
@@ -289,7 +304,7 @@ const FormularioEditar = ({ idProyecto, idAvance }) => {
     )
 };
 
-const FormularioObservacion = ({ idProyecto, idAvance }) => {
+const FormularioObservacion = ({ idAvance }) => {
     const form = useRef(null);
 
     const [addObservacion, { data: dataOb, loading: loadingOb, error: errorOb }] =
@@ -303,18 +318,18 @@ const FormularioObservacion = ({ idProyecto, idAvance }) => {
         fdCrOb.forEach((value, key) => {
             nuevaOb[key] = value;
         });
-        console.log('nueva Ob', nuevaOb)
-        // await addObservacion({
-        //     variables: { idAvance: idAvance, ...nuevaOb }
-        // });
-        // toast.success('Avance modificado con éxito')
+        // console.log('nueva Ob', nuevaOb)
+        await addObservacion({
+            variables: { idAvance: idAvance, campos: nuevaOb }
+        });
+        toast.success('Avance modificado con éxito')
     };
 
     return (
         <form
             ref={form} onSubmit={sendFormCrearOb}
         >
-            <h2>Ingresa una observación {idAvance}</h2>
+            <h2>Ingresa una observación</h2>
             <br />
             <label htmlFor='avance'>
                 ID Avance
