@@ -4,6 +4,7 @@ import { useQuery, useMutation } from '@apollo/client';
 import { ELIMINAR_USUARIO } from 'graphql/Usuarios/mutations';
 import Boton from '../../components/Boton';
 import { Link } from 'react-router-dom';
+import PrivateComponent from 'components/PrivateComponent';
 
 const Usuarios = () => {
 
@@ -14,8 +15,12 @@ const Usuarios = () => {
 
 
   useEffect(() => {
-    console.log(data);
+    console.log('mire aca', data);
   }, [data]);
+
+  useEffect(() => {
+    refetch();
+  }, []);
 
   const Eliminar = (iden) => {
 
@@ -32,7 +37,7 @@ const Usuarios = () => {
 
   return (
     <div>
-      <h4 className='text-3xl font-extrabold text-gray-900 p-8 ml-64'>
+      <h4 className='flex justify-center p-4 font-bold text-3xl m-2 text-blue-600'>
         Gestion de usuarios
       </h4>
 
@@ -45,7 +50,9 @@ const Usuarios = () => {
             <th>Correo</th>
             <th>Rol</th>
             <th>Estado</th>
-            <th>Acciones</th>
+            <PrivateComponent roleList={['ADMINISTRADOR', 'LIDER']}>
+              <th>Acciones</th>
+            </PrivateComponent>
 
           </tr>
         </thead>
@@ -60,16 +67,19 @@ const Usuarios = () => {
                   <td>{p.correo}</td>
                   <td>{p.rol}</td>
                   <td>{p.estado}</td>
-                  <td>
-                    <div className='flex w-full justify-around'>
-                      <i class="far fa-edit"></i>
-                      <i className='fas fa-trash'
-
-                        onClick={() => Eliminar(p.correo)
-                        }>
-                      </i>
-                    </div>
-                  </td>
+                  <PrivateComponent roleList={['ADMINISTRADOR', 'LIDER']}>
+                    <td>
+                      <div className='flex w-full justify-around'>
+                        <Link to={`/usuarios/editar/${p._id}`}>
+                          <i class="far fa-edit"></i>
+                        </Link>
+                        <i className='fas fa-trash'
+                          onClick={() => Eliminar(p.correo)
+                          }>
+                        </i>
+                      </div>
+                    </td>
+                  </PrivateComponent>
 
                 </tr>
               );

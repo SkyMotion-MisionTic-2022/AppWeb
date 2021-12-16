@@ -6,11 +6,17 @@ import { Link } from 'react-router-dom';
 import { nanoid } from 'nanoid';
 import { CreateObjectiveContext } from 'context/createObjectiveContext';
 import { useCreateObjective } from 'context/createObjectiveContext';
+import { useUser } from 'context/userContext';
+import { useNavigate } from 'react-router-dom';
 
 const NuevoProyecto = () => {
     const form = useRef(null);
+    let navigate = useNavigate();
+    const { userData, setUserData } = useUser();
     const [crearProyecto, { data: dataMutation, loading: loadingMutation, error: errorMutation }] =
         useMutation(CREAR_PROYECTO);
+
+
 
 
     const submitForm = async (e) => {
@@ -44,14 +50,20 @@ const NuevoProyecto = () => {
                 nuevoProyecto[key] = value;
             }
           });
+         if(nuevoProyecto["objetivos"]){
           nuevoProyecto["objetivos"] = Object.values(nuevoProyecto.objetivos);  
+         } 
         nuevoProyecto["presupuesto"] = parseFloat(nuevoProyecto["presupuesto"]);
+        nuevoProyecto["lider"]=userData._id;
 
         console.log(nuevoProyecto);
 
         await crearProyecto({
             variables: { ...nuevoProyecto },
         });
+
+        navigate('/proyectos');
+
 
 
     };
@@ -109,20 +121,15 @@ const NuevoProyecto = () => {
 
                 <label htmlFor='lider'>
                     Lider
-                    <select
-                        className='bg-gray-50 border border-gray-600 p-2 rounded-lg m-2'
+                    <input
                         name='lider'
+                        className='bg-gray-50 border border-gray-600 p-2 rounded-lg m-2'
+                        type='text'
+                        placeholder='Nombre proyecto'
                         required
-                        defaultValue={0}
-                    >
-
-                        <option disabled value={0}>
-                            Seleccione una opción
-                        </option>
-                        <option>619adf7960d6c38bb4ce1d22</option>
-                        <option>619ceafc20aed9151fcc0d38</option>
-
-                    </select>
+                        disabled
+                        defaultValue={userData.correo}
+                    />
                 </label>
                 <div className='flex flex-row justify-around' >
                 <Objetivos />

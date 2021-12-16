@@ -37,42 +37,49 @@ const Login = () => {
   }, [dataMutation, setToken, navigate]);
 
   return (
-    <div className='flex flex-col items-center justify-center w-full h-full p-10'>
-      <h1 className='text-xl font-bold text-gray-900'>Iniciar sesión</h1>
-      <form className='flex flex-col' onSubmit={submitForm} ref={form}>
-        <label htmlFor='correo'>
-          Correo
-          <input
-            name='correo'
-            className='bg-gray-50 border border-gray-600 p-2 rounded-lg m-2'
-            type='email'
-            required
-          />
-        </label>
+    <div className='bg-color flex flex-col items-center justify-center w-full h-full p-10  '>
+      <section className="flex flex-col border-2  border-gray-100 rounded-3xl p-12 m-8">
+        <h1 className='flex justify-center text-2xl text-gray-100'>
+          Iniciar sesión
+        </h1>
+        <form className='flex flex-col' onSubmit={submitForm} ref={form}>
+          <label htmlFor='correo'>
+            <input
+              name='correo'
+              className='registro-input m-2'
+              placeholder='Correo'
+              type='email'
+              required
+            />
+          </label>
 
 
-        <label htmlFor='password'>
-          Contraseña
-          <input
-            name='password'
-            className='bg-gray-50 border border-gray-600 p-2 rounded-lg m-2'
-            type='password'
-            placeholder='contraseña'
-            required
-          />
-        </label>
-        <button
-          type='submit'
-          class='bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded'
-        >
-          Iniciar sesion
-        </button>
+          <label htmlFor='password'>
+            <input
+              name='password'
+              className='registro-input  m-2'
+              type='password'
+              placeholder='Contraseña'
+              required
+            />
+          </label>
+          <button
+            type='submit'
+            className='bg-transparent hover:bg-blue-500 text-gray-100 font-semibold hover:text-white py-2 px-2 border border-gray-100 hover:border-transparent  rounded-full'
+          >
+            Iniciar sesion
+          </button>
 
-      </form>
-      <span>¿No tienes una cuenta?</span>
-      <Link to='/auth/register'>
-        <span className='text-blue-700'>Regístrate</span>
-      </Link>
+        </form>
+        <span className='flex justify-center mt-4 text-gray-100'>
+          ¿No tienes una cuenta?
+        </span>
+        <Link to='/auth/registro'>
+          <span className='flex justify-center text-gray-100 hover:text-gray-300'>
+            Regístrate
+          </span>
+        </Link>
+      </section>
     </div>
   );
 };

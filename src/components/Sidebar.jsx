@@ -1,19 +1,43 @@
 import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
+import { Tooltip } from '@material-ui/core';
+import { useAuth } from 'context/authContext';
 
 const SidebarLinks = () => {
+
+
   return (
     <ul className='mt-12'>
       <SidebarRoute to='' title='Inicio' icon='fas fa-home' />
       <SidebarRoute to='/perfil' title='Perfil' icon='fas fa-user-circle' />
       <SidebarRoute to='/usuarios' title='Gestión de Usuarios' icon='fas fa-users' />
       <SidebarRoute to='/proyectos' title='Gestión de Proyectos' icon='fas fa-clipboard-list' />
-      <SidebarRoute to='/inscripciones' title='Gestión de Inscripciones' icon='fas fa-user-check' />
-      <SidebarRoute to='/avances' title='Gestión de Avances' icon='fas fa-rocket' />
-      <SidebarRoute to='' title='Logout' icon='fas fa-sign-out-alt' />
+      {/* <SidebarRoute to='/inscripciones' title='Gestión de Inscripciones' icon='fas fa-user-check' /> */}
+      {/* <SidebarRoute to='/avances' title='Gestión de Avances' icon='fas fa-rocket' /> */}
+      <Logout />
     </ul>
   );
-};  
+};
+
+const Logout = () => {
+  const { setToken } = useAuth();
+  const deleteToken = () => {
+    console.log('eliminar token');
+    setToken(null);
+  };
+  return (
+    <li onClick={() => deleteToken()}>
+      <NavLink to='/auth/bienvenidos' className='sidebar-route'>
+        <div className='flex items-center'>
+          <Tooltip title='Cerrar Sesión' arrow>
+            <i className='fas fa-sign-out-alt' />
+          </Tooltip>
+
+        </div>
+      </NavLink>
+    </li>
+  );
+};
 
 const Sidebar = () => {
   const [open, setOpen] = useState(true);
@@ -63,8 +87,11 @@ const SidebarRoute = ({ to, title, icon }) => {
         }
       >
         <div className='flex items-center'>
-          <i className={icon} />
-          <span className='text-sm  ml-2'>{title}</span>
+          <Tooltip title={title} arrow>
+            <i className={icon} />
+            {/* <span className='text-sm  ml-2'>{title}</span> */}
+          </Tooltip>
+
         </div>
       </NavLink>
     </li>

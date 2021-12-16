@@ -35,64 +35,86 @@ const NuevoUsuario = () => {
                 onSubmit={submitForm}
 
             >
-                <label htmlFor='nombre'>
-                    Nombre
-                    <input
-                        name='nombre'
-                        className='bg-gray-50 border border-gray-600 p-2 rounded-lg m-2'
-                        type='text'
-                        placeholder='Nombre'
-                        required
-                    />
-                </label>
+                <div className='items-center'>
+                    <label htmlFor='nombre'>
+                        Nombre
+                        <input
+                            name='nombre'
+                            className='bg-gray-50 border border-gray-600 p-2 rounded-lg m-2'
+                            type='text'
+                            placeholder='Nombre'
+                            required
+                        />
+                    </label>
 
-                <label htmlFor='apellido'>
-                    Apellido
-                    <input
-                        name='apellido'
-                        className='bg-gray-50 border border-gray-600 p-2 rounded-lg m-2'
-                        type='text'
-                        placeholder='apellido'
-                        required
-                    />
-                </label>
+                    <label htmlFor='apellido'>
+                        Apellido
+                        <input
+                            name='apellido'
+                            className='bg-gray-50 border border-gray-600 p-2 rounded-lg m-2'
+                            type='text'
+                            placeholder='apellido'
+                            required
+                        />
+                    </label>
 
-                <label htmlFor='identificacion'>
-                    Identificacion
-                    <input
-                        name='identificacion'
-                        className='bg-gray-50 border border-gray-600 p-2 rounded-lg m-2'
-                        type='text'
-                        placeholder='identificacion'
-                        required
-                    />
-                </label>
+                    <label htmlFor='identificacion'>
+                        Identificacion
+                        <input
+                            name='identificacion'
+                            className='bg-gray-50 border border-gray-600 p-2 rounded-lg m-2'
+                            type='text'
+                            placeholder='identificacion'
+                            required
+                        />
+                    </label>
 
-                <label htmlFor='correo'>
-                    Correo
-                    <input
-                        name='correo'
-                        className='bg-gray-50 border border-gray-600 p-2 rounded-lg m-2'
-                        type='email'
-                        required
-                    />
-                </label>
+                    <label htmlFor='correo'>
+                        Correo
+                        <input
+                            name='correo'
+                            className='bg-gray-50 border border-gray-600 p-2 rounded-lg m-2'
+                            type='email'
+                            required
+                        />
+                    </label>
+
+                </div>
+                <div className='place-content-around'>
+            
 
 
-                <label htmlFor='password'>
-                    Contraseña
-                    <input
-                        name='password'
-                        className='bg-gray-50 border border-gray-600 p-2 rounded-lg m-2'
-                        type='text'
-                        placeholder='contraseña'
-                        required
-                    />
-                </label>
-               
-               
+                    <label htmlFor='password'>
+                        Contraseña
+                        <input
+                            name='password'
+                            className='bg-gray-50 border border-gray-600 p-2 rounded-lg m-2'
+                            type='text'
+                            placeholder='contraseña'
+                            required
+                        />
+                    </label>
 
-                <label htmlFor='rol'>
+                    <label htmlFor='estado'>
+                        Estado
+                        <select
+                            className='bg-gray-50 border border-gray-600 p-2 rounded-lg m-2'
+                            name='estado'
+                            required
+                            defaultValue={0}
+                        >
+
+                            <option disabled value={0}>
+                                Seleccione una opción
+                            </option>
+                            <option>PENDIENTE</option>
+                            <option>AUTORIZADO</option>
+                            <option>NO_AUTORIZADO</option>
+
+                        </select>
+                    </label>
+
+                    <label htmlFor='rol'>
                     Rol
                     <select
                         className='bg-gray-50 border border-gray-600 p-2 rounded-lg m-2'
@@ -111,24 +133,11 @@ const NuevoUsuario = () => {
                     </select>
                 </label>
 
-                <label htmlFor='estado'>
-                    Rol
-                    <select
-                        className='bg-gray-50 border border-gray-600 p-2 rounded-lg m-2'
-                        name='estado'
-                        required
-                        defaultValue={0}
-                    >
 
-                        <option disabled value={0}>
-                            Seleccione una opción
-                        </option>
-                        <option>PENDIENTE</option>
-                        <option>AUTORIZADO</option>
-                        <option>NO_AUTORIZADO</option>
+                </div>
 
-                    </select>
-                </label>
+        
+
 
                 <div className='flex flex-row justify-around'>
                     <Link to="/usuarios">

@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const Bienvenidos = () => {
   return (
@@ -10,11 +11,15 @@ const Bienvenidos = () => {
             <br></br>
             <span className="text-blue-500"> Soporta </span> 
             La gestión tú proyectos de investigación y
-            <span className="text-blue-500"> mejora tús procesos.</span>
+            <span className="text-blue-500"> mejora tus procesos.</span>
           </h2>
           <div className="inline-flex flex-col text-center">
-          <a className="text-3xl py-4 px-8 transition rounded-md font-semibold mb-1 text-white bg-blue-500 ring-transparent focus:outline-none hover:bg-blue-600" href="/challenges">
-            ¡Registrate!</a>
+          
+          
+          <a className="text-3xl py-4 px-8 transition rounded-md font-semibold mb-1 text-white bg-blue-500 ring-transparent focus:outline-none hover:bg-blue-600">
+           
+            <Link to='/auth/registro'>  ¡Registrate!</Link>
+          </a>
           </div>
         
         </div>

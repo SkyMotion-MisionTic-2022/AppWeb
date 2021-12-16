@@ -14,5 +14,12 @@ mutation Mutation($id: String) {
   }
 }
 `;
+const EDITAR_PROYECTO_ADMIN = gql`
+mutation EditarProyecto($id: String!, $estado: Enum_EstadoProyecto, $fase: Enum_FaseProyecto) {
+  editarProyecto(_id: $id, estado: $estado, fase: $fase) {
+    _id
+  }
+}
+`;
 
-export {CREAR_PROYECTO, ELIMINAR_PROYECTO}
+export {CREAR_PROYECTO, ELIMINAR_PROYECTO, EDITAR_PROYECTO_ADMIN}
