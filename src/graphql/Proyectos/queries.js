@@ -2,15 +2,22 @@ import { gql } from '@apollo/client';
 
 const GET_PROYECTOS = gql`
 query Proyectos {
-    Proyectos {
-      _id,
-      nombre,
-      fase,
-      fechaInicio,
-      fechaFin,
+  Proyectos {
+    _id,
+    nombre,
+    fase,
+    fechaInicio,
+    fechaFin,
+    estado
+    inscripciones {
+      _id
       estado
+      estudiante {
+        _id
+      }
     }
   }
+}
 `;
 const GET_PROYECTO = gql`
 query Query($id: String!) {

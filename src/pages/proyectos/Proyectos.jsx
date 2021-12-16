@@ -13,19 +13,18 @@ import { toast } from 'react-toastify';
 
 
 const Proyectos = () => {
- 
+
     const { data, refetch, loading, error } = useQuery(GET_PROYECTOS);
     const { userData, setUserData } = useUser();
     const [mostrarAccion, setMostrarAccion] = useState(false);
     const [crearProyecto, setcrearProyecto] = useState(false);
 
-
     const [eliminarProyecto, { data: dataMutation, loading: loadingMutation, error: errorMutation }] =
         useMutation(ELIMINAR_PROYECTO);
 
     useEffect(() => {
-        console.log('log de query data', data);
-       // console.log('tamaño', data.Proyectos.length);
+        // console.log('log de query data', data);
+        // console.log('tamaño', data.Proyectos.length);
     }, [data]);
 
     useEffect(() => {
@@ -40,21 +39,16 @@ const Proyectos = () => {
 
     }, []);
 
-
-
     const Eliminar = (id) => {
-
         console.log(id);
-
         eliminarProyecto({
             variables: { _id: id },
-
         });
         refetch()
     };
 
-    if(loading) return <div>Cargando</div>
-    if(error) return <div>Error</div>
+    if (loading) return <div>Cargando</div>
+    if (error) return <div>Error</div>
 
     return (
         <div>
@@ -109,23 +103,18 @@ const Proyectos = () => {
                                                         </Tooltip>
                                                     </PrivateComponent>
                                                     <PrivateComponent roleList={['ESTUDIANTE']}>
-                                                    <InscripcionProyecto
-                                                        idProyecto={p._id}
-                                                        estado={p.estado}
-                                                        inscripciones={p.inscripciones}
-                                                        />
+                                                        <button >
+                                                            <InscripcionProyecto
+                                                                idProyecto={p._id}
+                                                                estado={p.estado}
+                                                                inscripciones={p.inscripciones}
+                                                            />
+                                                        </button>
                                                     </PrivateComponent>
                                                     <PrivateComponent roleList={['LIDER']}>
                                                         <Tooltip title='Inscripciones' arrow>
                                                             <Link to={`/inscripciones/${p._id}`}>
                                                                 <i class="fas fa-user-check"></i>
-                                                            </Link>
-                                                        </Tooltip>
-                                                    </PrivateComponent>
-                                                    <PrivateComponent roleList={['LIDER', 'ESTUDIANTE']}>
-                                                        <Tooltip title='Avances' arrow>
-                                                            <Link to={`/avances/${p._id}`}>
-                                                                <i class="fas fa-rocket"></i>
                                                             </Link>
                                                         </Tooltip>
                                                     </PrivateComponent>
@@ -164,46 +153,64 @@ const InscripcionProyecto = ({ idProyecto, estado, inscripciones }) => {
     const [crearInscripcion, { data, loading }] = useMutation(CREAR_INSCRIPCION);
     const { userData } = useUser();
     // console.log(userData);
-  
+
     useEffect(() => {
-      if (userData && inscripciones) {
-        const flt = inscripciones.filter(
-          (el) => el.estudiante._id === userData._id
-        );
-        if (flt.length > 0) {
-          setEstadoInscripcion(flt[0].estado);
+        if (userData && inscripciones) {
+            const flt = inscripciones.filter(
+                (el) => el.estudiante._id === userData._id
+            );
+            if (flt.length > 0) {
+                setEstadoInscripcion(flt[0].estado);
+            }
         }
-      }
     }, [userData, inscripciones]);
-  
+
     useEffect(() => {
-      if (data) {
-        toast.success('inscripcion creada con exito');
-      }
+        if (data) {
+            toast.success('inscripcion creada con exito');
+        }
     }, [data]);
-  
+
     const confirmarInscripcion = () => {
-      crearInscripcion({
-        variables: { proyecto: idProyecto, estudiante: userData._id },
-      });
+        crearInscripcion({
+            variables: { proyecto: idProyecto, estudiante: userData._id },
+        });
     };
-  
+
     return (
-      <Fragment>
-        {estadoInscripcion !== '' ? (
-          <span>
-            Ya estas inscrito en este proyecto y el estado es {estadoInscripcion}
-          </span>
-        ) : (
-          <ButtonLoading
-            onClick={() => confirmarInscripcion()}
-            disabled={estado === 'INACTIVO'}
-            loading={loading}
-            text='Inscribirme en este proyecto'
-          />
-        )}
-      </Fragment>
+        <Fragment>
+            <>
+                {estadoInscripcion !== '' ? (
+                    <span>
+                        Ya estas inscrito en este proyecto y el estado es {estadoInscripcion}
+                    </span>
+                ) : (
+                    <ButtonLoading
+                        onClick={() => confirmarInscripcion()}
+                        disabled={estado === 'INACTIVO'}
+                        loading={loading}
+                        text='Inscribirme en este proyecto'
+                    />
+                )}
+            </>
+            <>
+                {estadoInscripcion === 'ACEPTADA' ? (
+                    <div>
+                        <PrivateComponent roleList={['LIDER', 'ESTUDIANTE']}>
+                            <Tooltip title='Avances' arrow>
+                                <Link to={`/avances/${idProyecto}`}>
+                                    <i class="fas fa-rocket" ></i>
+                                </Link>
+                            </Tooltip>
+                        </PrivateComponent>
+                    </div>
+                ) : (
+                    <></>
+                )
+                }
+            </>
+        </Fragment>
     );
-  };
+};
 
 export default Proyectos;
