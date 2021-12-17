@@ -1,0 +1,46 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.sidebar {
+  @apply w-16 bg-blue-400 shadow flex-col justify-between;
+}
+
+.sidebar-route {
+  @apply rounded-md flex w-full justify-between cursor-pointer items-center m-3 p-3;
+}
+
+.fa-app-store:before {
+  content: "\f36f";
+  color: white;
+  font-size: 40px;
+  margin-left: 15px;
+}
+
+.fondo{
+  background-image: url('https://images.pexels.com/photos/3153198/pexels-photo-3153198.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940');
+  background-size: 1800px;
+  width: 100%;
+}
+
+
+.registro-input{
+  background-color: transparent;
+    border-left: 0px;
+    border-top: 0px;
+    border-right: 0px;
+    border-bottom: 2px solid #ffff;
+    font-size: 16px;
+    font-family: 'Muli', sans-serif;
+    margin-bottom: 20px;
+    padding: 0px 20px;
+    outline: none;
+    height: 50px;
+    
+}
+
+.registro-input::placeholder { color: #ffff; }
+
+.bg-color{
+  background: linear-gradient(#3ba0ff, #2a46eb);
+}
