@@ -83,7 +83,7 @@ const Proyectos = () => {
                                             <td>{p.fechaFin}</td>
                                             <td>
                                                 <div className='flex w-full justify-around'>
-                                                    {mostrarAccion ? (
+                                                    {mostrarAccion && p.estado === 'ACTIVO' ? (
 
                                                         <div >
                                                             <Tooltip title='Editar' arrow>
