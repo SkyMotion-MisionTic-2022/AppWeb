@@ -5,6 +5,7 @@ import { useMutation } from '@apollo/client';
 import { useAuth } from 'context/authContext';
 import { useNavigate } from 'react-router-dom';
 
+
 const Login = () => {
   const { setToken } = useAuth();
   const form = useRef(null);
@@ -21,9 +22,9 @@ const Login = () => {
     fd.forEach((value, key) => {
       loginV[key] = value;
     });
-    console.log(loginV);
+    // console.log(loginV);
     login({ variables: loginV });
-    console.log(dataMutation);
+    // console.log(dataMutation);
   };
 
   useEffect(() => {
@@ -32,6 +33,7 @@ const Login = () => {
         console.error('MOSTRAR MENSAJE DE ERROR AQUI');
       }
       setToken(dataMutation.login.token);
+      // console.log('userData', userData);
       navigate('/');
     }
   }, [dataMutation, setToken, navigate]);
