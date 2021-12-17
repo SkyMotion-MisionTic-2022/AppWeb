@@ -53,7 +53,7 @@ function App() {
   // const [loadingAuth, setLoadingAuth] = useState(true);
 
   const setToken = (token) => {
-   // console.log('set token', token);
+    console.log('set token', token);
     setAuthToken(token);
     if (token) {
       localStorage.setItem('token', JSON.stringify(token));
@@ -74,9 +74,10 @@ function App() {
         correo: decoded.correo,
         password: decoded.password,
         rol: decoded.rol,
+        estado: decoded.estado
       });
     }
-   // console.log('datos de usuario:', userData)
+    // console.log('datos de usuario:', userData)
   }, [authToken]);
 
 

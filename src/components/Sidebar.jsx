@@ -2,16 +2,23 @@ import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { Tooltip } from '@material-ui/core';
 import { useAuth } from 'context/authContext';
+import { useUser } from 'context/userContext';
 
 const SidebarLinks = () => {
-
+  const { userData } = useUser();
 
   return (
     <ul className='mt-12'>
       <SidebarRoute to='' title='Inicio' icon='fas fa-home' />
-      <SidebarRoute to='/perfil' title='Perfil' icon='fas fa-user-circle' />
-      <SidebarRoute to='/usuarios' title='Gestión de Usuarios' icon='fas fa-users' />
-      <SidebarRoute to='/proyectos' title='Gestión de Proyectos' icon='fas fa-clipboard-list' />
+      {userData.estado === 'AUTORIZADO' ? (
+        <div>
+          <SidebarRoute to='/perfil' title='Perfil' icon='fas fa-user-circle' />
+          <SidebarRoute to='/usuarios' title='Gestión de Usuarios' icon='fas fa-users' />
+          <SidebarRoute to='/proyectos' title='Gestión de Proyectos' icon='fas fa-clipboard-list' />
+        </div>
+      ) : (
+        <></>
+      )}
       {/* <SidebarRoute to='/inscripciones' title='Gestión de Inscripciones' icon='fas fa-user-check' /> */}
       {/* <SidebarRoute to='/avances' title='Gestión de Avances' icon='fas fa-rocket' /> */}
       <Logout />
