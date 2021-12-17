@@ -97,7 +97,7 @@ const Avances = () => {
                                             <PrivateComponent roleList={['ESTUDIANTE']}>
                                                 <Tooltip title='Editar Avance' arrow>
                                                     {/* <i className="fas fa-edit" onClick={() => setOpenDEditar(true)} ></i> */}
-                                                    <i className="fas fa-edit" onClick={() => ActivarDEdicion({ identificador: a._id })} ></i>
+                                                    <i className="fas fa-edit" onClick={() => ActivarDEdicion({ identificador: a._id })}  ></i>
                                                 </Tooltip>
                                             </PrivateComponent>
                                             <Tooltip title='Detalles' arrow>
@@ -128,10 +128,10 @@ const Avances = () => {
                 <FormularioAvance idProyecto={dataP.Proyecto._id} />
             </Dialog>
             <Dialog open={openDEditar} onClose={() => setOpenDEditar(false)}>
-                <FormularioEditar idProyecto={dataP.Proyecto._id} idAvance={idAvance} />
+                <FormularioEditar idProyecto={dataP.Proyecto._id} idAvance={idAvance} setOpenDEditar={setOpenDEditar} />
             </Dialog>
             <Dialog open={openDObservacion} onClose={() => setOpenDObservacion(false)}>
-                <FormularioObservacion idProyecto={dataP.Proyecto._id} idAvance={idAvance} />
+                <FormularioObservacion idProyecto={dataP.Proyecto._id} idAvance={idAvance} setOpenDObservacion={setOpenDObservacion} />
             </Dialog>
         </div >
     )
@@ -219,12 +219,12 @@ const FormularioAvance = ({ idProyecto }) => {
     )
 };
 
-const FormularioEditar = ({ idProyecto, idAvance }) => {
+const FormularioEditar = ({ idProyecto, idAvance, setOpenDEditar }) => {
     const { userData } = useUser();
     const form = useRef(null);
 
     const [editAvance, { data: dataEdAv, loading: loadingEdAv, error: errorEdAv }] =
-        useMutation(EDITAR_AVANCE);
+        useMutation(EDITAR_AVANCE, { refetchQueries: [GET_AVANCES_FILTRADOS] });
 
     const sendFormEditar = async (e) => {
         e.preventDefault();
@@ -238,7 +238,8 @@ const FormularioEditar = ({ idProyecto, idAvance }) => {
         await editAvance({
             variables: { id: idAvance, ...avanceEditado }
         });
-        toast.success('Avance modificado con éxito')
+        setOpenDEditar(false);
+        toast.success('Avance modificado con éxito');
     };
 
     return (
@@ -285,7 +286,7 @@ const FormularioEditar = ({ idProyecto, idAvance }) => {
                     name='fecha'
                     className='bg-gray-50 border border-gray-600 p-2 rounded-lg m-2 h-6 w-42'
                     type='date'
-                    disabled={true}
+                    disabled={false}
                     required
                 />
             </label>
@@ -304,7 +305,7 @@ const FormularioEditar = ({ idProyecto, idAvance }) => {
     )
 };
 
-const FormularioObservacion = ({ idAvance }) => {
+const FormularioObservacion = ({ idAvance, setOpenDObservacion }) => {
     const form = useRef(null);
 
     const [addObservacion, { data: dataOb, loading: loadingOb, error: errorOb }] =
@@ -322,6 +323,7 @@ const FormularioObservacion = ({ idAvance }) => {
         await addObservacion({
             variables: { idAvance: idAvance, campos: nuevaOb }
         });
+        setOpenDObservacion(false);
         toast.success('Avance modificado con éxito')
     };
 

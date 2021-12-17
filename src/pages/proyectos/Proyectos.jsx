@@ -83,25 +83,36 @@ const Proyectos = () => {
                                             <td>{p.fechaFin}</td>
                                             <td>
                                                 <div className='flex w-full justify-around'>
-                                                    {mostrarAccion && p.estado === 'ACTIVO' ? (
-
-                                                        <div >
+                                                    <PrivateComponent roleList={['LIDER']}>
+                                                        <div>
+                                                            {mostrarAccion && p.estado === 'ACTIVO' ? (
+                                                                <div >
+                                                                    <Tooltip title='Editar' arrow>
+                                                                        <Link to={`/proyectos/editar/${p._id}`}>
+                                                                            <i class="far fa-edit"></i>
+                                                                        </Link>
+                                                                    </Tooltip>
+                                                                </div>
+                                                            ) : console.log("no acciones")}
+                                                        </div>
+                                                    </PrivateComponent>
+                                                    <PrivateComponent roleList={['ADMINISTRADOR']}>
+                                                        <div>
                                                             <Tooltip title='Editar' arrow>
                                                                 <Link to={`/proyectos/editar/${p._id}`}>
                                                                     <i class="far fa-edit"></i>
                                                                 </Link>
                                                             </Tooltip>
-
                                                         </div>
-
-                                                    ) : console.log("no acciones")}
-                                                    <PrivateComponent roleList={['LIDER']}>
-                                                        <Tooltip title='Detalles' arrow>
-                                                            <Link to={`/proyectos/${p._id}`}>
-                                                                <i class="fas fa-search-plus"></i>
-                                                            </Link>
-                                                        </Tooltip>
                                                     </PrivateComponent>
+
+
+                                                    <Tooltip title='Detalles' arrow>
+                                                        <Link to={`/proyectos/${p._id}`}>
+                                                            <i class="fas fa-search-plus"></i>
+                                                        </Link>
+                                                    </Tooltip>
+
                                                     <PrivateComponent roleList={['ESTUDIANTE']}>
                                                         <button >
                                                             <InscripcionProyecto
@@ -115,6 +126,11 @@ const Proyectos = () => {
                                                         <Tooltip title='Inscripciones' arrow>
                                                             <Link to={`/inscripciones/${p._id}`}>
                                                                 <i class="fas fa-user-check"></i>
+                                                            </Link>
+                                                        </Tooltip>
+                                                        <Tooltip title='Avances' arrow>
+                                                            <Link to={`/avances/${p._id}`}>
+                                                                <i class="fas fa-rocket" ></i>
                                                             </Link>
                                                         </Tooltip>
                                                     </PrivateComponent>

@@ -6,12 +6,14 @@ import { useQuery, useMutation } from '@apollo/client';
 import Boton from '../../components/Boton';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import { useUser } from 'context/userContext';
 
 
 const EditarUsuario = () => {
     const { _id } = useParams();
     const form = useRef(null);
-    const [userData, setUserData] = useState({});
+    const { userData } = useUser();
+    const [userDataE, setUserDataE] = useState({});
     let navigate = useNavigate();
 
     const {
@@ -26,13 +28,16 @@ const EditarUsuario = () => {
     const [editUser, { data: dataMutation, loading: loadingMutation, error: errorMutation }] =
         useMutation(EDITAR_USUARIO);
 
+    useEffect(() => {
+        console.log('data logea', userData)
+    }, [userData]);
 
     useEffect(() => {
 
         if (queryData) {
             console.log('dq', queryData);
             console.log(queryData.Usuario);
-            setUserData(queryData.Usuario);
+            setUserDataE(queryData.Usuario);
         }
     }, [queryData]);
 
@@ -68,7 +73,7 @@ const EditarUsuario = () => {
                     <input
                         className='bg-gray-50 border border-gray-600 p-2 rounded-lg m-2'
                         type='text'
-                        defaultValue={userData.nombre}
+                        defaultValue={userDataE.nombre}
                         disabled
                     />
                 </label>
@@ -80,7 +85,7 @@ const EditarUsuario = () => {
                         type='text'
                         placeholder='apellido'
                         disabled
-                        defaultValue={userData.apellido}
+                        defaultValue={userDataE.apellido}
                     />
                 </label>
 
@@ -90,7 +95,7 @@ const EditarUsuario = () => {
                         className='bg-gray-50 border border-gray-600 p-2 rounded-lg m-2'
                         type='text'
                         disabled
-                        defaultValue={userData.identificacion}
+                        defaultValue={userDataE.identificacion}
                     />
                 </label>
 
@@ -100,7 +105,7 @@ const EditarUsuario = () => {
                         className='bg-gray-50 border border-gray-600 p-2 rounded-lg m-2'
                         type='email'
                         disabled
-                        defaultValue={userData.correo}
+                        defaultValue={userDataE.correo}
                     />
                 </label>
 
@@ -110,7 +115,7 @@ const EditarUsuario = () => {
                         className='bg-gray-50 border border-gray-600 p-2 rounded-lg m-2'
                         type='text'
                         disabled
-                        defaultValue={userData.rol}
+                        defaultValue={userDataE.rol}
                     />
                 </label>
 
@@ -123,12 +128,27 @@ const EditarUsuario = () => {
                         required
                     >
 
-                        <option disabled value={0}>
-                            Seleccione una opción
-                        </option>
-                        <option>PENDIENTE</option>
-                        <option>AUTORIZADO</option>
-                        <option>NO_AUTORIZADO</option>
+                        {
+                            userData.rol === 'ADMINISTRADOR' ? (
+                                <>
+                                    <option disabled value={0}>
+                                        Seleccione una opción
+                                    </option>
+                                    <option>PENDIENTE</option>
+                                    <option>AUTORIZADO</option>
+                                    <option>NO_AUTORIZADO</option>
+                                </>
+                            ) : (
+                                <>
+                                    <option disabled value={0}>
+                                        Seleccione una opción
+                                    </option>
+                                    <option>PENDIENTE</option>
+                                    <option>AUTORIZADO</option>
+                                </>
+
+                            )
+                        }
 
                     </select>
                 </label>
