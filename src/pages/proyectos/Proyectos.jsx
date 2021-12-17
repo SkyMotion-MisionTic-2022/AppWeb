@@ -210,7 +210,7 @@ const InscripcionProyecto = ({ idProyecto, estado, inscripciones }) => {
                 )}
             </>
             <>
-                {estadoInscripcion === 'ACEPTADA' ? (
+                {estadoInscripcion === 'ACEPTADA' && estado === 'ACTIVO' ? (
                     <div>
                         <PrivateComponent roleList={['LIDER', 'ESTUDIANTE']}>
                             <Tooltip title='Avances' arrow>
