@@ -24,6 +24,7 @@ import EditarProyecto from 'pages/proyectos/EditarProyecto';
 import EditarPerfil from 'pages/perfil/EditarPerfil';
 import VerProyecto from 'pages/proyectos/VerProyecto';
 import VerAvance from 'pages/avances/VerAvance';
+import EditarUsuario from 'pages/usuarios/EditarUsuario';
 
 // import PrivateRoute from 'components/PrivateRoute';
 const httpLink = createHttpLink({
@@ -97,6 +98,7 @@ function App() {
                 <Route path='perfil' element={<Perfil />} />
                 <Route path='editarperfil/:_id' element={<EditarPerfil />} />
                 <Route path='usuarios' element={<Usuarios />} />
+                <Route path='usuarios/editar/:_id' element={<EditarUsuario />} />
                 <Route path='crearusuario' element={<NuevoUsuario />} />
                 <Route path='proyectos' element={<Proyectos />} />
                 <Route path='crearproyecto' element={<NuevoProyecto />} />
