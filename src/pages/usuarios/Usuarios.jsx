@@ -8,7 +8,7 @@ import PrivateComponent from 'components/PrivateComponent';
 
 const Usuarios = () => {
 
-  var { data, refetch } = useQuery(GET_USUARIOS);
+  var { data, refetch, loading, error} = useQuery(GET_USUARIOS);
   const [eliminarUsuario, { data: dataMutation, loading: loadingMutation, error: errorMutation }] =
     useMutation(ELIMINAR_USUARIO);
 
@@ -34,6 +34,8 @@ const Usuarios = () => {
 
 
   };
+  if (loading) return <div>Cargando</div>
+  if (error) return <div>Error</div>
 
   return (
     <div>
