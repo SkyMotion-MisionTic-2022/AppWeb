@@ -133,7 +133,7 @@ const Proyectos = () => {
             {crearProyecto ? (
                 <div className='flex flex-row justify-around'>
                     <Link to="/crearproyecto">
-                        <Boton titulo='Crear Proyecto'>
+                        <Boton data-testid='botonCrearProy' titulo='Crear Proyecto'>
                         </Boton>
                     </Link>
                 </div>

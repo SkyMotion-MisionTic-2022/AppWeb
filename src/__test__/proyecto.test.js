@@ -5,6 +5,9 @@ import { GET_PROYECTOS } from 'graphql/Proyectos/queries';
 import TestRenderer from 'react-test-renderer';
 import PrivateRoute from 'components/PrivateRoute';
 import { UserContext } from 'context/userContext';
+import { cleanup } from '@testing-library/react';
+
+afterEach(cleanup);
 
 const mockData = {
   request: {
@@ -91,5 +94,7 @@ it('renders error',  async() => {
   const tree = component.toJSON();
   expect(tree.children).toContain('Error');
 });
+
+
 
 
